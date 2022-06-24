@@ -7,12 +7,16 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env, environment } from 'src/environments/environment';
 import { NavBarComponent } from './common/header/nav-bar/nav-bar.component';
 import { AuthComponent } from './user/auth/auth.component';
+import { QuestionnaireComponent } from './healthinfo/questionnaire/questionnaire.component';
+import { TargetcalorieCalculateComponent } from './targetcalorie/targetcalorie-calculate/targetcalorie-calculate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    AuthComponent
+    AuthComponent,
+    QuestionnaireComponent,
+    TargetcalorieCalculateComponent
   ],
   imports: [
     BrowserModule,
