@@ -9,6 +9,7 @@ export class TargetcalorieCalculateComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit(): void {
   }
 

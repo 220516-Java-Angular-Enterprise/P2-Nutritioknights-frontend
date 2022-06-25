@@ -9,6 +9,7 @@ import { NavBarComponent } from './common/header/nav-bar/nav-bar.component';
 import { AuthComponent } from './user/auth/auth.component';
 import { QuestionnaireComponent } from './healthinfo/questionnaire/questionnaire.component';
 import { TargetcalorieCalculateComponent } from './targetcalorie/targetcalorie-calculate/targetcalorie-calculate.component';
+import { ServicesComponent } from './services/services/services.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TargetcalorieCalculateComponent } from './targetcalorie/targetcalorie-c
     NavBarComponent,
     AuthComponent,
     QuestionnaireComponent,
-    TargetcalorieCalculateComponent
+    TargetcalorieCalculateComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,
