@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './common/main/main.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
       domain: environment.authDomain,
       clientId: environment.authClientId
     }),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
   ], 
   providers: [],
   bootstrap: [AppComponent]

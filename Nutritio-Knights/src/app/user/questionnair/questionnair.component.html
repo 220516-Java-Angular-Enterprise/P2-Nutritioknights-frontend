@@ -1,5 +1,8 @@
 <auth></auth>
+<form class="mb-3">
+    <form (ngSubmit)="processForm(newHealthForm)" #newHealthForm="ngForm">
 <div class="mb-3">
+
     <label for="exampleFormControlInput1" class="form-label">Username</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="username">
     <label for="exampleFormControlInput1" class="form-label">Firstname</label>
@@ -7,40 +10,39 @@
     <label for="exampleFormControlInput1" class="form-label">Lastname</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="lastname">
     <label for="exampleFormControlInput1" class="form-label">Age</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="age">
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="age">    
+
 </div>
 
 <select class="form-select" id="specificSizeSelect">
+
     <option selected>Sex</option>
     <option value="1">Male</option>
     <option value="2">Female</option>
     <option value="3">Intersex</option>
+        
 </select>
 
 <br>
 <br>
 
 <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Current Weight</label>
-    <input type="text" class="form-control" placeholder="Ibs." aria-label="Ibs." id="exampleFormControlInput1">
+    <label for="exampleFormControlInput1" class="form-label">Current Weight in kg</label>
+    <input type="text" class="form-control" placeholder="kg." aria-label="kg." id="exampleFormControlInput1">
+       
+
 </div>
 
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Height in cm</label>
+    <input type="text" class="form-control" placeholder="cm." aria-label="cm." id="exampleFormControlInput1">
 </div>
-<div class="row g-3">
-    <div class="col-sm">
-        <input type="text" class="form-control" placeholder="cm." aria-label="cm.">
-    </div>
 
-
-</div>
-<br>
 <select class="form-select" id="specificSizeSelect">
     <option selected>What is your diet plan?</option>
     <option value="1">High Protein</option>
     <option value="2">High carbs</option>
-    <option value="3">High fat</option>
+    <option value="3">High fat</option>    
 </select>
 <br>
 <br>
@@ -52,13 +54,18 @@
     <option value="4">1Ibs</option>
     <option value="5">2Ibs</option>
 </select>
+
 <br>
-<br>
+
 <div class="form-group">
-    <!-- <div *ngIf="displayFormSubmitError" style="color: red">
+    <div *ngIf="displayFormSubmitError" style="color: red">
         <br>
-        There's something wrong with your form //need to do input validation for front end as well
-    </div> -->
+        There's something wrong with your form
+    </div>
 
     <br>
-    <button type="button" class="btn btn-primary" routerlink="calculate/targetcalorie">Submit</button>
+
+    <input type="submit" value="Submit" class="btn btn-success">
+</div>
+</form>
+</form>

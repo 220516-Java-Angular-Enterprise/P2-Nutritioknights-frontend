@@ -4,6 +4,8 @@ import { UserInfoService } from 'src/app/services/user-info.service';
 import { UserInfo } from 'src/app/models/userinfo';
 import { Router } from '@angular/router';
 import { Questionair } from 'src/app/models/questionair';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-questionnair',
@@ -15,6 +17,7 @@ export class QuestionnairComponent implements OnInit {
   constructor(private auth: AuthService, private userInfoSerive: UserInfoService, private router: Router) { }
 
   user: any = {}
+  displayFormSubmitError:boolean = false;
 
   userinfo: UserInfo = {
     username: '',
@@ -60,5 +63,19 @@ export class QuestionnairComponent implements OnInit {
 
     })
   }
+  processForm(newHealthForm: NgForm) {
+    if (newHealthForm.form.status === 'VALID') { //if this restaurant form is valid
+      // this.userInfoSerive.createNewquestionnaire(this.questionnaire); //dependency injection
+      // this.router.navigateByUrl('/targetCalorie');//redirecting them after they submit. navigating them back to restaurants
+    } else {
+      this.displayFormSubmitError = true; // if not correct that means there is an error in the form
+    }
+
 
 }
+}
+     
+       
+
+    
+  
