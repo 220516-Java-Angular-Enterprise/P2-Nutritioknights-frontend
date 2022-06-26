@@ -15,18 +15,18 @@ export class QuestionnaireComponent implements OnInit {
 
   displayFormSubmitError: boolean = false;
 
-  // healthinfo: Healthinfo = {
-  //   username: '',
-  //   firstname: '',
-  //   lastname: '',
-  //   age: 0,
-  //   sex: '',
-  //   currentweight:0,
-  //   height:0,
-  //   dietplan:'',
-  //   howmuchlose:0,
+  healthinfo: Healthinfo = {
+    username: '',
+    firstname: '',
+    lastname: '',
+    age: 0,
+    sex: '',
+    currentweight:0,
+    height:0,
+    dietplan:'',
+    howmuchlose:0,
 
-  // };
+  };
 
   // placeholders = { //placeholders for fields
   //   username: 'username',
