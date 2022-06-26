@@ -9,7 +9,9 @@ import { NavBarComponent } from './common/header/nav-bar/nav-bar.component';
 import { AuthComponent } from './user/auth/auth.component';
 import { QuestionnaireComponent } from './healthinfo/questionnaire/questionnaire.component';
 import { TargetcalorieCalculateComponent } from './targetcalorie/targetcalorie-calculate/targetcalorie-calculate.component';
-import { ServicesComponent } from './services/services/services.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './common/home-page/home-page.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { ServicesComponent } from './services/services/services.component';
     AuthComponent,
     QuestionnaireComponent,
     TargetcalorieCalculateComponent,
-    ServicesComponent
+    HomePageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,10 @@ import { ServicesComponent } from './services/services/services.component';
       domain: environment.authDomain,
       clientId: environment.authClientId
     }),
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule, // added after importing http client module
+    FormsModule//imported form module
   ],
   providers: [],
   bootstrap: [AppComponent]

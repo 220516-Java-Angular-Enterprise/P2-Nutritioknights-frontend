@@ -11,36 +11,36 @@ import { HealthinfoService } from 'src/app/services/healthinfo.service';
 })
 export class QuestionnaireComponent implements OnInit {
 
-  constructor(private healthinfoService: HealthinfoService, private router: Router) { }
+  // constructor(private healthinfoService: HealthinfoService, private router: Router) { }
 
   displayFormSubmitError: boolean = false;
 
-  healthinfo: Healthinfo = {
-    username: '',
-    firstname: '',
-    lastname: '',
-    age: 0,
-    sex: '',
-    currentweight:0,
-    height:0,
-    dietplan:'',
-    howmuchlose:0,
+  // healthinfo: Healthinfo = {
+  //   username: '',
+  //   firstname: '',
+  //   lastname: '',
+  //   age: 0,
+  //   sex: '',
+  //   currentweight:0,
+  //   height:0,
+  //   dietplan:'',
+  //   howmuchlose:0,
 
-  };
+  // };
 
-  placeholders = { //placeholders for fields
-    username: 'username',
-    firstname: 'firstname',
-    lastname: 'lastname',
-    age: 'age',
-    sex: 'sex',
-    currentweight:'currentweight',
-    height:'height',
-    dietplan:'dietplan',
-    howmuchlose:'howmuchlose',
-    targetcal:'targetcal',
+  // placeholders = { //placeholders for fields
+  //   username: 'username',
+  //   firstname: 'firstname',
+  //   lastname: 'lastname',
+  //   age: 'age',
+  //   sex: 'sex',
+  //   currentweight:'Ibs.',
+  //   height:'cm',
+    // dietplan:'dietplan',
+    // howmuchlose:'how much lose or gain',
+    // targetcal:'targetcal',
 
-  };
+  // };
 
   ngOnInit(): void {
   }
