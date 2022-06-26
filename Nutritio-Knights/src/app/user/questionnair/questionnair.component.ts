@@ -57,8 +57,6 @@ export class QuestionnairComponent implements OnInit {
         }
         // --------- 
 
-
-
       })
 
     })
@@ -67,6 +65,7 @@ export class QuestionnairComponent implements OnInit {
     if (newHealthForm.form.status === 'VALID') { //if this restaurant form is valid
       // this.userInfoSerive.createNewquestionnaire(this.questionnaire); //dependency injection
       // this.router.navigateByUrl('/targetCalorie');//redirecting them after they submit. navigating them back to restaurants
+      this.displayFormSubmitError = false;
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
     }

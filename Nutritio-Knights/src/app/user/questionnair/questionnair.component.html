@@ -4,7 +4,7 @@
         <div class="mb-3">
 
     <label for="exampleFormControlInput1" class="form-label">Username</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="username">
+    <input [(ngModel)]="questionair.username" name="username-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="username" required>
     <label for="exampleFormControlInput1" class="form-label">Firstname</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="firstname">
     <label for="exampleFormControlInput1" class="form-label">Lastname</label>
