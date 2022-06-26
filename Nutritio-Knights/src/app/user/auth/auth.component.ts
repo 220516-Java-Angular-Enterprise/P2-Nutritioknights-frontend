@@ -21,13 +21,12 @@ export class AuthComponent implements OnInit {
   }
 
   logIn(): void{
-    this.router.navigateByUrl('home')
+    this.auth.loginWithRedirect();
   }
 
   logOut(): void{
+    this.auth.logout();
       this.router.navigateByUrl('')
-      this.auth.logout();
   }
-
 }
 

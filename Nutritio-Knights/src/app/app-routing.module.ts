@@ -15,12 +15,13 @@ const routes: Routes = [
   {
     path: "home",
     component: HomePageComponent,
-    canActivate: [AuthGuard]
+    
   },
 
   {
-    path: "Questionnair",
-    component: QuestionnairComponent
+    path: "questionnair",
+    component: QuestionnairComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
