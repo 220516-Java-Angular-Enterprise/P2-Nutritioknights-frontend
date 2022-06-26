@@ -21,17 +21,13 @@ export class AuthComponent implements OnInit {
   }
 
   logIn(): void{
-    this.auth.loginWithRedirect();
-    this.router.navigateByUrl('NutritioKnights')
-
+    this.router.navigateByUrl('home')
   }
 
   logOut(): void{
       this.router.navigateByUrl('')
       this.auth.logout();
   }
-
-  
 
 }
 
