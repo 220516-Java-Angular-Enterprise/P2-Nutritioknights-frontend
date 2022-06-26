@@ -2,7 +2,7 @@
 
 export const environment = {
   production: false,
-  authDomain: 'dev-drfqp91k.us.auth0.com', 
-  authClientId: 'FlhLQdUOZFPPea25phm4xGjpk1qQzD3w'
+  authDomain: 'dev-6s5ghdiq.us.auth0.com', 
+  authClientId: 'giklZL5COnziuSkdre9KLquWlRimJ8TY'
 };
 

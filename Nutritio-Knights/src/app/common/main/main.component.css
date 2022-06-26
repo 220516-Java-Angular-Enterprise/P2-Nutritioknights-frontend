@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lora', serif;;
+}
+
+.hero{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../../assets/images/hermes-rivera-Ww8eQWjMJWk-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo{
+    width:180px; 
+    cursor: pointer;
+}
+
+.navbar{
+    width: 85%;
+    height: 20%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+button{
+    color: black;
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+}
+
+.content{
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 8%; 
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+h1{
+    font-size: 80px;
+    margin: 10px 0 30px;
+    line-height: 80px;
+}
+
+.description{
+    padding-bottom: 25px;
+    font-size: 25px;
+}
+
+small{
+    font-size: 20px;
+}
+
+.about-us{
+    width: 78%;
+    margin: auto;
+    text-align: center;
+    padding: 100px;
+}
+
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature-col{
+    flex-basis: 31%;
+    background-color: white;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+}
+
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.about-us p{
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+
+.feature-col img{
+    width: 220px;
+    margin-bottom: 30px;
+}
+
+.carousel img {
+    margin: auto;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    color: #bc9321 !important;
+    font-size: 3rem;
+}
+
+.slick-prev {
+    transform: translateX(-3rem);
+}
+
+.customers {
+    padding-bottom: 20rem;
+}
+
+.customers h3 {
+    margin-bottom: 3rem;
+} 
+
+.testimonial-paragraph {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #afafaf;
+    margin: 0 auto;
+    margin-top: 3rem;
+    max-width: 500px;
+    text-align: center;
+}
+.name {
+    text-align: center;
+}
+
