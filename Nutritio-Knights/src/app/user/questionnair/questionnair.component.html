@@ -1,2 +1,64 @@
 <auth></auth>
-<p>questionnair works!</p>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Username</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="username">
+    <label for="exampleFormControlInput1" class="form-label">Firstname</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="firstname">
+    <label for="exampleFormControlInput1" class="form-label">Lastname</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="lastname">
+    <label for="exampleFormControlInput1" class="form-label">Age</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="age">
+</div>
+
+<select class="form-select" id="specificSizeSelect">
+    <option selected>Sex</option>
+    <option value="1">Male</option>
+    <option value="2">Female</option>
+    <option value="3">Intersex</option>
+</select>
+
+<br>
+<br>
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Current Weight</label>
+    <input type="text" class="form-control" placeholder="Ibs." aria-label="Ibs." id="exampleFormControlInput1">
+</div>
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Height in cm</label>
+</div>
+<div class="row g-3">
+    <div class="col-sm">
+        <input type="text" class="form-control" placeholder="cm." aria-label="cm.">
+    </div>
+
+
+</div>
+<br>
+<select class="form-select" id="specificSizeSelect">
+    <option selected>What is your diet plan?</option>
+    <option value="1">High Protein</option>
+    <option value="2">High carbs</option>
+    <option value="3">High fat</option>
+</select>
+<br>
+<br>
+<select class="form-select" id="specificSizeSelect">
+    <option selected>How much do you want to lose or gain per week?</option>
+    <option value="1">-2Ibs</option>
+    <option value="2">-1Ibs</option>
+    <option value="3">0</option>
+    <option value="4">1Ibs</option>
+    <option value="5">2Ibs</option>
+</select>
+<br>
+<br>
+<div class="form-group">
+    <!-- <div *ngIf="displayFormSubmitError" style="color: red">
+        <br>
+        There's something wrong with your form //need to do input validation for front end as well
+    </div> -->
+
+    <br>
+    <button type="button" class="btn btn-primary" routerlink="calculate/targetcalorie">Submit</button>
