@@ -7,12 +7,7 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
 const routes: Routes = [
 
   {
-    path: "home", 
-    component: HomePageComponent
-  },
-
-  {
-    path: "NutritioKnights", 
+    path: "", 
     component: MainComponent
   },
 
