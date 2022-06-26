@@ -7,12 +7,19 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env, environment } from 'src/environments/environment';
 import { NavBarComponent } from './common/header/nav-bar/nav-bar.component';
 import { AuthComponent } from './user/auth/auth.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './common/main/main.component';
+import { HomePageComponent } from './common/home-page/home-page.component';
+import { QuestionnairComponent } from './user/questionnair/questionnair.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    AuthComponent
+    AuthComponent,
+    MainComponent,
+    HomePageComponent,
+    QuestionnairComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +28,8 @@ import { AuthComponent } from './user/auth/auth.component';
       domain: environment.authDomain,
       clientId: environment.authClientId
     }),
-  ],
+    HttpClientModule
+  ], 
   providers: [],
   bootstrap: [AppComponent]
 })

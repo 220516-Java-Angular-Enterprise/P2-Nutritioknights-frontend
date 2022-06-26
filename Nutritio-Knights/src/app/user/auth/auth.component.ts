@@ -20,16 +20,13 @@ export class AuthComponent implements OnInit {
   }
 
   logIn(): void{
-      this.auth.loginWithRedirect();
+    this.auth.loginWithRedirect({});
   }
 
   logOut(): void{
       this.auth.logout();
   }
 
-  getToken(){
-    return localStorage.getItem('access_token');
-  }
   
 
 }
