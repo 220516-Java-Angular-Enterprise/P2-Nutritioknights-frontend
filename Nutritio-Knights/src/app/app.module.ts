@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './common/main/main.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
+import { JournalComponent } from './journal/journal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
     AuthComponent,
     MainComponent,
     HomePageComponent,
-    QuestionnairComponent
+    QuestionnairComponent,
+    JournalComponent
   ],
   imports: [
     BrowserModule,

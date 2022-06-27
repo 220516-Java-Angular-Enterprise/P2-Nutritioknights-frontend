@@ -5,6 +5,7 @@ import { MainComponent } from './common/main/main.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
 
 import { AuthGuard } from '@auth0/auth0-angular';
+import { JournalComponent } from './journal/journal.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: "questionnair",
     component: QuestionnairComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "journal",
+    component: JournalComponent,
     canActivate: [AuthGuard]
   }
 ];
