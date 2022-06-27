@@ -85,6 +85,11 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     
   }
 
+  onSubmit() {
+    console.log("Target Calorie is:"+ targetCals);
+  }
+
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log("a change has happened")  //is used to print any kind of variables defined before in it or to just print any message that needs to be displayed to the user.
     console.log(changes)
