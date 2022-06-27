@@ -20,7 +20,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
   sexes:Array<string>= ['Male','Female','Intersex'];
   currentSelectedSex:string = '';
   targetCals: number = 0;
-  canCalTargetCals: boolean = true;
+  canCalTargetCalsError: boolean = false;
 
   getSelectedUserAccess() {
     console.log("Current Selected User", this.questionair.sex)
@@ -63,7 +63,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     currentweight: 0,
     height: 0,
     dietplan: 'What is your diet plan?',
-    howmuchlose: 0,
+    howmuchlose: -1000,
   };
 
   ngOnInit(): void {
@@ -85,18 +85,14 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     
   }
 
-  onSubmit() {
-    console.log("Target Calorie is:"+ targetCals);
-  }
-
-
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("a change has happened")  //is used to print any kind of variables defined before in it or to just print any message that needs to be displayed to the user.
+    console.log("a change has happened")
     console.log(changes)
     this.questionair.username = this.questionair.username;
   }
 
   processForm(newHealthForm: NgForm) {
+    console.log('In process form')
     if (newHealthForm.form.status === 'VALID') { //if this restaurant form is valid
       this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
       console.log(this.questionair.username)
@@ -121,11 +117,15 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 }
 
 
-  calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number): number{
+  calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number){
 
-    if(age=== 0 || sex === '' || currentweight === 0 || height === 0 || howmuchlose === -1000){
+    console.log(age)
+
+    if (age === 0 || age == null || sex === '' || currentweight === 0 || currentweight == null || height === 0 || height == null || howmuchlose === -1000){
       console.log('in here')
-      this.canCalTargetCals = false;
+      this.canCalTargetCalsError = true;
+      console.log(this.canCalTargetCalsError)
+      return;
 
     }
 
@@ -133,18 +133,18 @@ export class QuestionnairComponent implements OnInit, OnChanges {
       //BMR male
       console.log('in here')
       console.log(13.397 * currentweight + 4.799 * height - 5.677 * age + 88.362)
-      return this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362);
+      this.canCalTargetCalsError = false;
+      this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362);
+      return;
     }
     if(sex == 'Female'){
       //BMR female
-      return this.targetCals = Math.round(9.247*currentweight + 3.098*height - 4.330*age + 447.593)
-
+      this.canCalTargetCalsError = false;
+      this.targetCals = Math.round(9.247*currentweight + 3.098*height - 4.330*age + 447.593)
+      return;
     } else{
-      return 0
+      return;
       //BMR intersex
-    }
-    onSubmit() {
-      console.log("Target Calorie is:"+ targetCals);
     }
   }
 
