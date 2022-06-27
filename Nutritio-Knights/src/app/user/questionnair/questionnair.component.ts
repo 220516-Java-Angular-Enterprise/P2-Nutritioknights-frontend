@@ -63,7 +63,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     currentweight: 0,
     height: 0,
     dietplan: 'What is your diet plan?',
-    howmuchlose: 'Target weight gain or loss per week',
+    howmuchlose: 0,
   };
 
   ngOnInit(): void {
