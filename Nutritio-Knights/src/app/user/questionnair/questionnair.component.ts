@@ -63,7 +63,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     currentweight: 0,
     height: 0,
     dietplan: 'What is your diet plan?',
-    howmuchlose: 0,
+    howmuchlose: -1000,
   };
 
   ngOnInit(): void {
@@ -119,7 +119,9 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
   calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number){
 
-    if(age=== 0 || sex === '' || currentweight === 0 || height === 0 || howmuchlose === -1000){
+    console.log(age)
+
+    if (age === 0 || age == null || sex === '' || currentweight === 0 || currentweight == null || height === 0 || height == null || howmuchlose === -1000){
       console.log('in here')
       this.canCalTargetCalsError = true;
       console.log(this.canCalTargetCalsError)
