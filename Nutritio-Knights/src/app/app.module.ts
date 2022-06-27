@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { RedirectHomeComponent } from './common/redirect-home/redirect-home.component';
 import { CacheService } from './cache-service';
 import { CachingInterceptor } from './cache-interceptor';
-
+import { JournalComponent } from './journal/journal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { CachingInterceptor } from './cache-interceptor';
     MainComponent,
     HomePageComponent,
     QuestionnairComponent,
-    RedirectHomeComponent
+    RedirectHomeComponent,
+    JournalComponent
   ],
   imports: [
     BrowserModule,
