@@ -24,9 +24,9 @@ export class HomePageComponent implements OnInit {
     age: 0,
     sex: '',
     height: 0,
-    currentweight: 0,
-    dietplan: '',
-    targetcal: 0
+    currentWeight: 0,
+    dietPlan: '',
+    targetCals: 0
   }
 
   id: string = '';

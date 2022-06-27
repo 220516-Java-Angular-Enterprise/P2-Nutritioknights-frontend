@@ -19,6 +19,8 @@ export class QuestionnairComponent implements OnInit, OnChanges {
   user: any = {}
   sexes:Array<string>= ['Male','Female','Intersex'];
   currentSelectedSex:string = '';
+  targetCals: number = 0;
+  canCalTargetCals: boolean = true;
 
   getSelectedUserAccess() {
     console.log("Current Selected User", this.questionair.sex)
@@ -34,9 +36,22 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     age: 0,
     sex: '',
     height: 0,
-    currentweight: 0,
-    dietplan: '',
-    targetcal: 0
+    currentWeight: 0,
+    dietPlan: '',
+    targetCals: 0
+  }
+
+  userinfoSend: UserInfo = {
+    username: '',
+    email: '',
+    fname: '',
+    lname: '',
+    age: 0,
+    sex: '',
+    height: 0,
+    currentWeight: 0,
+    dietPlan: '',
+    targetCals: 0
   }
 
   questionair: Questionair = {
@@ -60,7 +75,6 @@ export class QuestionnairComponent implements OnInit, OnChanges {
       this.userInfoSerive.getUserInfoByEmail(this.user.email).then(r => {
         this.userinfo = r;
         // -------- Redierect if already done questionair
-
         if(this.userinfo !== null){
           this.router.navigateByUrl('home')
         }
@@ -79,26 +93,30 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
   processForm(newHealthForm: NgForm) {
     if (newHealthForm.form.status === 'VALID') { //if this restaurant form is valid
-      // this.userInfoSerive.createNewquestionnaire(this.questionnaire); //dependency injection
-      // this.router.navigateByUrl('/targetCalorie');//redirecting them after they submit. navigating them back to restaurants
-      this.calculateTargetCals(this.questionair.age,this.questionair.sex,this.questionair.currentweight,this.questionair.height,this.questionair.howmuchlose)
-      console.log(this.targetCals)
+      this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
+      console.log(this.questionair.username)
+      this.userinfoSend.username = this.questionair.username
+      this.userinfoSend.fname = this.questionair.firstname
+      this.userinfoSend.lname = this.questionair.lastname
+      this.userinfoSend.email = this.user.email
+      this.userinfoSend.age = this.questionair.age
+      this.userinfoSend.sex = this.questionair.sex
+      this.userinfoSend.height = this.questionair.height
+      this.userinfoSend.currentWeight = this.questionair.currentweight
+      this.userinfoSend.dietPlan = this.questionair.dietplan
+      this.userinfoSend.targetCals = this.targetCals
+      console.log(this.userinfoSend)
+      this.userInfoSerive.createNewUserInfo(this.user.email, this.userinfoSend); //dependency injection
       this.displayFormSubmitError = false;
+      // have to fix redirect
+      this.router.navigateByUrl('home')
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
     }
 }
 
-targetCals: number = 0;
-canCalTargetCals: boolean = true;
 
-  calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number){
-
-    console.log(age)
-    console.log(sex)
-    console.log(currentweight)
-    console.log(height)
-    console.log(howmuchlose)
+  calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number): number{
 
     if(age=== 0 || sex === '' || currentweight === 0 || height === 0 || howmuchlose === -1000){
       console.log('in here')
@@ -110,13 +128,14 @@ canCalTargetCals: boolean = true;
       //BMR male
       console.log('in here')
       console.log(13.397 * currentweight + 4.799 * height - 5.677 * age + 88.362)
-      this.targetCals = 13.397*currentweight + 4.799*height - 5.677*age + 88.362;
+      return this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362);
     }
     if(sex == 'Female'){
       //BMR female
-      this.targetCals = 9.247*currentweight + 3.098*height - 4.330*age + 447.593
+      return this.targetCals = Math.round(9.247*currentweight + 3.098*height - 4.330*age + 447.593)
 
     } else{
+      return 0
       //BMR intersex
     }
   }

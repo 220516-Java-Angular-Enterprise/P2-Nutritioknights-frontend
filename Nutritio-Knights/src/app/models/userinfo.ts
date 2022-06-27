@@ -6,7 +6,7 @@ export interface UserInfo {
     age: number;
     sex: string;
     height: number;
-    currentweight: number;
-    dietplan: string;
-    targetcal: number
+    currentWeight: number;
+    dietPlan: string;
+    targetCals: number
 }
