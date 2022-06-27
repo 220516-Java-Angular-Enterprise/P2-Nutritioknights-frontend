@@ -29,6 +29,11 @@ const routes: Routes = [
     path: "questionnair",
     component: QuestionnairComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: "journal",
+    component: JournalComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
