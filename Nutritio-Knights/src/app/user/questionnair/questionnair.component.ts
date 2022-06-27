@@ -59,12 +59,22 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     firstname: '',
     lastname: '',
     age: 0,
-    sex: 'Male',
+    sex: 'Sex',
     currentweight: 0,
     height: 0,
     dietplan: 'What is your diet plan?',
     howmuchlose: -1000,
   };
+
+  validForm: boolean  = false;
+
+  isValisForm() {
+    if (this.questionair.sex === 'Sex' || this.questionair.dietplan === 'What is your diet plan?'){
+      this.validForm = false;
+    } else{
+      this.validForm = true;
+    }
+  }
 
   ngOnInit(): void {
 
@@ -72,7 +82,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
     this.auth.user$.subscribe(u =>{
       this.user = u;
-      this.userInfoSerive.getUserInfoByEmail(this.user.email).then(r => {
+      this.userInfoSerive.getUserInfoByEmail(this.user.email, false).then(r => {
         this.userinfo = r;
         // -------- Redierect if already done questionair
         if(this.userinfo !== null){
@@ -93,7 +103,8 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
   processForm(newHealthForm: NgForm) {
     console.log('In process form')
-    if (newHealthForm.form.status === 'VALID') { //if this restaurant form is valid
+    this.isValisForm()
+    if (newHealthForm.form.status === 'VALID' && this.validForm && !this.canCalTargetCalsError) { //if this restaurant form is valid
       this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
       console.log(this.questionair.username)
       this.userinfoSend.username = this.questionair.username
