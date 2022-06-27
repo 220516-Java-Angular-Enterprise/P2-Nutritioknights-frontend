@@ -7,10 +7,15 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env, environment } from 'src/environments/environment';
 import { NavBarComponent } from './common/header/nav-bar/nav-bar.component';
 import { AuthComponent } from './user/auth/auth.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainComponent } from './common/main/main.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
+import { FormsModule } from '@angular/forms';
+import { RedirectHomeComponent } from './common/redirect-home/redirect-home.component';
+import { CacheService } from './cache-service';
+import { CachingInterceptor } from './cache-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
     AuthComponent,
     MainComponent,
     HomePageComponent,
-    QuestionnairComponent
+    QuestionnairComponent,
+    RedirectHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,14 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
       domain: environment.authDomain,
       clientId: environment.authClientId
     }),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
   ], 
-  providers: [],
+  providers: [
+    CacheService,
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

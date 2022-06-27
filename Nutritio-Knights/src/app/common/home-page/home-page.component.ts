@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { BehaviorSubject } from 'rxjs';
 import { UserInfo } from 'src/app/models/userinfo';
 import { UserInfoService } from 'src/app/services/user-info.service';
 
@@ -24,9 +25,9 @@ export class HomePageComponent implements OnInit {
     age: 0,
     sex: '',
     height: 0,
-    currentweight: 0,
-    dietplan: '',
-    targetcal: 0
+    currentWeight: 0,
+    dietPlan: '',
+    targetCals: 0
   }
 
   id: string = '';
@@ -35,7 +36,7 @@ export class HomePageComponent implements OnInit {
     this.auth.user$.subscribe(u => {
       this.user = u;
       console.log(this.user.email);
-      this.userInfoService.getUserInfoByEmail(this.user.email).then(r =>{
+      this.userInfoService.getUserInfoByEmail(this.user.email,true).then(r =>{
         this.userinfo=r;
         console.log(this.userinfo);
 
@@ -44,9 +45,13 @@ export class HomePageComponent implements OnInit {
         }
 
 
-      });
-    } )
 
+      });
+
+      console.log('home')
+    } )
   }
+
+  private fetch$ = new BehaviorSubject<void>(undefined);
 
 }
