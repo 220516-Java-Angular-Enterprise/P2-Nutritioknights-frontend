@@ -6,20 +6,20 @@
     <label for="exampleFormControlInput1" class="form-label">Username</label>
     <input [(ngModel)]="questionair.username" name="username-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="username" required>
     <label for="exampleFormControlInput1" class="form-label">Firstname</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="firstname">
+    <input [(ngModel)]="questionair.firstname" name="firstname-name" #name="ngModel"type="text" class="form-control" id="exampleFormControlInput1" placeholder="firstname"required>
     <label for="exampleFormControlInput1" class="form-label">Lastname</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="lastname">
+    <input [(ngModel)]="questionair.lastname" name="lastname-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="lastname" required>
     <label for="exampleFormControlInput1" class="form-label">Age</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="age">    
+    <input [(ngModel)]="questionair.age" name="age-name" #name="ngModel" type="number" class="form-control" id="exampleFormControlInput1" placeholder="age" required>    
 
  </div>
 
-<select class="form-select" id="specificSizeSelect">
+<select  [(ngModel)]="questionair.sex" name="sex-name" type="text" #name="ngModel" class="form-select" id="specificSizeSelect">
 
     <option selected>Sex</option>
-    <option value="1">Male</option>
-    <option value="2">Female</option>
-    <option value="3">Intersex</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Intersex">Intersex</option>
         
 </select>
 
@@ -28,31 +28,30 @@
 
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Current Weight in kg</label>
-    <input type="text" class="form-control" placeholder="kg." aria-label="kg." id="exampleFormControlInput1">
+    <input [(ngModel)]="questionair.currentweight" name="weight-name" #name="ngModel" type="number" class="form-control" placeholder="kg." aria-label="kg." id="exampleFormControlInput1" required>
        
 
 </div>
 
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Height in cm</label>
-    <input type="text" class="form-control" placeholder="cm." aria-label="cm." id="exampleFormControlInput1">
+    <input [(ngModel)]="questionair.height" name="height-name" #name="ngModel"  type="number" class="form-control" placeholder="cm." aria-label="cm." id="exampleFormControlInput1" required>
 </div>
 
-<select class="form-select" id="specificSizeSelect">
+<select [(ngModel)]="questionair.dietplan" name="dietPlan-name" #name="ngModel"  class="form-select" id="specificSizeSelect" required>
     <option selected>What is your diet plan?</option>
-    <option value="1">High Protein</option>
-    <option value="2">High carbs</option>
-    <option value="3">High fat</option>    
+    <option value="High Protein">High Protein</option>
+    <option value="High carbs">High carbs</option>
+    <option value="High fat">High fat</option>    
 </select>
 <br>
 <br>
-<select class="form-select" id="specificSizeSelect">
-    <option selected>How much do you want to lose or gain per week?</option>
-    <option value="1">-2Ibs</option>
-    <option value="2">-1Ibs</option>
-    <option value="3">0</option>
-    <option value="4">1Ibs</option>
-    <option value="5">2Ibs</option>
+<select [(ngModel)]="questionair.howmuchlose" name="lose-name" type="number" #name="ngModel" class="form-select" id="specificSizeSelect" required>
+    <option selected value=0>0</option>
+    <option [ngValue]=-2>-2</option>
+    <option [ngValue]=-1>-1</option>
+    <option [ngValue]=1>1</option>
+    <option [ngValue]=2>2</option>
 </select>
 
 <br>

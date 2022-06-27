@@ -17,6 +17,13 @@ export class QuestionnairComponent implements OnInit, OnChanges {
   constructor(private auth: AuthService, private userInfoSerive: UserInfoService, private router: Router) { }
 
   user: any = {}
+  sexes:Array<string>= ['Male','Female','Intersex'];
+  currentSelectedSex:string = '';
+
+  getSelectedUserAccess() {
+    console.log("Current Selected User", this.questionair.sex)
+  }
+
   displayFormSubmitError:boolean = false;
 
   userinfo: UserInfo = {
@@ -37,11 +44,11 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     firstname: '',
     lastname: '',
     age: 0,
-    sex: '',
+    sex: 'Male',
     currentweight: 0,
     height: 0,
-    dietplan: '',
-    howmuchlose: -1000,
+    dietplan: 'What is your diet plan?',
+    howmuchlose: 0,
   };
 
   ngOnInit(): void {
@@ -60,17 +67,22 @@ export class QuestionnairComponent implements OnInit, OnChanges {
         // --------- 
       })
     })
+
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("a change has happened")
     console.log(changes)
+    this.questionair.username = this.questionair.username;
   }
 
   processForm(newHealthForm: NgForm) {
     if (newHealthForm.form.status === 'VALID') { //if this restaurant form is valid
       // this.userInfoSerive.createNewquestionnaire(this.questionnaire); //dependency injection
       // this.router.navigateByUrl('/targetCalorie');//redirecting them after they submit. navigating them back to restaurants
+      this.calculateTargetCals(this.questionair.age,this.questionair.sex,this.questionair.currentweight,this.questionair.height,this.questionair.howmuchlose)
+      console.log(this.targetCals)
       this.displayFormSubmitError = false;
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
@@ -82,13 +94,22 @@ canCalTargetCals: boolean = true;
 
   calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number){
 
+    console.log(age)
+    console.log(sex)
+    console.log(currentweight)
+    console.log(height)
+    console.log(howmuchlose)
+
     if(age=== 0 || sex === '' || currentweight === 0 || height === 0 || howmuchlose === -1000){
+      console.log('in here')
       this.canCalTargetCals = false;
 
     }
 
     if(sex == 'Male'){
       //BMR male
+      console.log('in here')
+      console.log(13.397 * currentweight + 4.799 * height - 5.677 * age + 88.362)
       this.targetCals = 13.397*currentweight + 4.799*height - 5.677*age + 88.362;
     }
     if(sex == 'Female'){
