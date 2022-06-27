@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
@@ -16,8 +17,8 @@ export class UserInfoService {
     return firstValueFrom(this.http.get<UserInfo>(this.restoURL + "/e=" + email));
   }
 
-  createNewquestionnaire(email: string, quest: UserInfo) {
-    return firstValueFrom(this.http.post(this.restoURL, quest)); // this is a post request
+  createNewUserInfo(email: string, quest: UserInfo) {
+    return firstValueFrom(this.http.post(this.restoURL, quest, { responseType: 'text' })); // this is a post request
   }
 
 }
