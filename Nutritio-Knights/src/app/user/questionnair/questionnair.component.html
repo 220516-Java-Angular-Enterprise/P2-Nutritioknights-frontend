@@ -62,9 +62,27 @@
         There's something wrong with your form
     </div>
 
+
+    
+
     <br>
+
 
     <input type="submit" value="Submit" class="btn btn-success">
 </div>
 </form>
 </form>
+
+    <div *ngIf="canCalTargetCalsError" style="color: red">
+        <br>
+        There's something wrong with your form, Cannot calculate Calories
+    </div>
+
+        <div *ngIf="!canCalTargetCalsError && targetCals !==0" style="color: green">
+            <br>
+            {{targetCals}}
+        </div>
+
+<button class="button"
+    (click)="calculateTargetCals(questionair.age, questionair.sex, questionair.currentweight, questionair.height, questionair.howmuchlose)">Calculate
+    Calories</button>
