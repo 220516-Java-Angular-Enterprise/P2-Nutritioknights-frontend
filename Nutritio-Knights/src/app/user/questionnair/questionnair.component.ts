@@ -102,6 +102,9 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     console.log(changes)
     this.questionair.username = this.questionair.username;
   }
+  onChange(event: any) {
+    this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
+  };
 
   processForm(questionair: Questionair) {
     console.log('In process form')
@@ -127,7 +130,8 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
     }
-}
+
+  }
 
 
   calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number){
