@@ -11,18 +11,6 @@ import { UserInfoService } from 'src/app/services/user-info.service';
 export class UserHomeComponent implements OnInit {
 
   constructor(private currRouter: ActivatedRoute, private userInfoService: UserInfoService, private router: Router) { 
-    this.currRouter.params.subscribe(p => {
-      this.username = p['username'];
-      this.userInfoService.getUserInfoByUsername(this.username).then(user => {
-        this.userinfo = user;
-        console.log(user)
-
-        if (this.userinfo === null) {
-          this.router.navigateByUrl('home')
-        }
-
-      })
-    })
   }
 
   username: string = ''
@@ -42,7 +30,20 @@ export class UserHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.userinfo.username)
+    this.currRouter.params.subscribe(p => {
+      this.username = p['username'];
+      this.userInfoService.getUserInfoByUsername(this.username).then(user => {
+        this.userinfo = user;
+        console.log(user)
+
+        if (this.userinfo === null) {
+          this.router.navigateByUrl('home')
+        }
+
+      })
+    })
+
+    console.log(this.userinfo.fname)
 
   }
 
