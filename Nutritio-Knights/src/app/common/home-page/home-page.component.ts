@@ -39,12 +39,14 @@ export class HomePageComponent implements OnInit {
       this.userInfoService.getUserInfoByEmail(this.user.email).then(r =>{
         this.userinfo=r;
         console.log(this.userinfo);
+        
+        this.router.navigateByUrl('home/' + this.userinfo.username)
+
 
       }).catch(error => {
         this.router.navigateByUrl('questionnair')
       });
 
-      console.log('home')
     } )
   }
 
