@@ -1,15 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <img class="logo" src="../../../../assets/logo.png">
+    <nav>
+      <ul class="nav__links">
+        <li><button class="button" (click)= "dummy()">Home</button></li>
+        <li><button class="button" (click)="toJournal()">My Journal</button></li>
+        <li><button class="button" (click)= "toFight()">Fight</button></li>
+        <li><button class="button" (click)="dummy()">My NutritioKnight</button></li>
       </ul>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item active">
-           <auth></auth>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
+    <auth></auth>
+  </header>
+</body>
+
+</html>
