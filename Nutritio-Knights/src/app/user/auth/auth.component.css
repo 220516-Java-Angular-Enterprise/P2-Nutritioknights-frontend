@@ -1,9 +1,14 @@
 button{
     color: black;
     padding: 10px 25px;
-    background: transparent;
+    background-color: rgb(217, 220, 223);
     border: 1px solid black;
     border-radius: 20px;
     outline: none;
     cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(133, 147, 151, 0.8);
 }

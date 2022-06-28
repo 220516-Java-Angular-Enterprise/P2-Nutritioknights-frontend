@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './common/main/main.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
+import { MainFightComponent } from './fight/main-fight/main-fight.component';
+import { CreateFightComponent } from './fight/create-fight/create-fight.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
     AuthComponent,
     MainComponent,
     HomePageComponent,
-    QuestionnairComponent
+    QuestionnairComponent,
+    MainFightComponent,
+    CreateFightComponent
   ],
   imports: [
     BrowserModule,

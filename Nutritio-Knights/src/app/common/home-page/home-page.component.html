@@ -1,2 +1,45 @@
-<auth></auth>
-<h1>Home</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <nav-bar></nav-bar>
+    <section id="banner" class="py-5">
+        <div class="container">
+           <h4 class="header" *ngIf="user">Welcome to Home Page {{user.nickname}}</h4>
+        </div>
+    </section>
+
+    <div class="filter">
+
+    </div>
+            <table>
+                <tr>
+                    <td>Your calories remaining today</td>
+                    <td>2000</td>
+                </tr>
+                <tr>
+                    <td>Your target calories</td>
+                    <td>3000</td>
+                </tr>
+                <tr>
+                    <td>Your current weight</td>
+                    <td>150lbs</td>
+                </tr>
+                <tr>
+                    <td>Your current height</td>
+                    <td>5ft 9inch</td>
+                </tr>
+                <tr>
+                    <td>Your diet plan</td>
+                    <td>Balanced</td>
+                </tr>
+            </table>
+    <section></section>
+</body>
+</html>
