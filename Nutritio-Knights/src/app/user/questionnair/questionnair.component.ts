@@ -82,7 +82,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
     this.auth.user$.subscribe(u =>{
       this.user = u;
-      this.userInfoSerive.getUserInfoByEmail(this.user.email, false).then(r => {
+      this.userInfoSerive.getUserInfoByEmail(this.user.email).then(r => {
         this.userinfo = r;
         // -------- Redierect if already done questionair
         if(this.userinfo !== null){
@@ -95,16 +95,21 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     
   }
 
+  calsWeightLoss: number = 0;
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log("a change has happened")
     console.log(changes)
     this.questionair.username = this.questionair.username;
   }
+  onChange(event: any) {
+    this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
+  };
 
-  processForm(newHealthForm: NgForm) {
+  processForm(questionair: Questionair) {
     console.log('In process form')
     this.isValisForm()
-    if (newHealthForm.form.status === 'VALID' && this.validForm && !this.canCalTargetCalsError) { //if this restaurant form is valid
+    if (this.validForm && !this.canCalTargetCalsError) { //if this restaurant form is valid
       this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
       console.log(this.questionair.username)
       this.userinfoSend.username = this.questionair.username
@@ -125,7 +130,8 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
     }
-}
+
+  }
 
 
   calculateTargetCals(age: number, sex: string, currentweight: number, height: number, howmuchlose:number){
@@ -140,18 +146,20 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
     }
 
+    this.calsWeightLoss = (3500/7)*howmuchlose;
+
     if(sex == 'Male'){
       //BMR male
       console.log('in here')
       console.log(13.397 * currentweight + 4.799 * height - 5.677 * age + 88.362)
       this.canCalTargetCalsError = false;
-      this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362);
+      this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362 + this.calsWeightLoss);
       return;
     }
     if(sex == 'Female'){
       //BMR female
       this.canCalTargetCalsError = false;
-      this.targetCals = Math.round(9.247*currentweight + 3.098*height - 4.330*age + 447.593)
+      this.targetCals = Math.round(9.247 * currentweight + 3.098 * height - 4.330 * age + 447.593  + this.calsWeightLoss)
       return;
     } else{
       return;

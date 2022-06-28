@@ -16,7 +16,7 @@ export class UserInfoService {
   //   return firstValueFrom(this.http.get<UserInfo>(this.restoURL + "/e=" + email));
   // }
 
-  createNewquestionnaire(email: string, quest: UserInfo) {
+  createNewUserInfo(email: string, quest: UserInfo) {
     return firstValueFrom(this.http.post(this.restoURL, quest)); // this is a post request
   }
 
