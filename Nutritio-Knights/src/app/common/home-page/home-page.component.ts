@@ -36,16 +36,12 @@ export class HomePageComponent implements OnInit {
     this.auth.user$.subscribe(u => {
       this.user = u;
       console.log(this.user.email);
-      this.userInfoService.getUserInfoByEmail(this.user.email,true).then(r =>{
+      this.userInfoService.getUserInfoByEmail(this.user.email).then(r =>{
         this.userinfo=r;
         console.log(this.userinfo);
 
-        if(this.userinfo === null){
-          this.router.navigateByUrl('questionnair')
-        }
-
-
-
+      }).catch(error => {
+        this.router.navigateByUrl('questionnair')
       });
 
       console.log('home')
