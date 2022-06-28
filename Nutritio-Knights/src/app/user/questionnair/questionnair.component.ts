@@ -95,6 +95,8 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     
   }
 
+  calsWeightLoss: number = 0;
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log("a change has happened")
     console.log(changes)
@@ -140,18 +142,20 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
     }
 
+    this.calsWeightLoss = (3500/7)*howmuchlose;
+
     if(sex == 'Male'){
       //BMR male
       console.log('in here')
       console.log(13.397 * currentweight + 4.799 * height - 5.677 * age + 88.362)
       this.canCalTargetCalsError = false;
-      this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362);
+      this.targetCals = Math.round(13.397*currentweight + 4.799*height - 5.677*age + 88.362 + this.calsWeightLoss);
       return;
     }
     if(sex == 'Female'){
       //BMR female
       this.canCalTargetCalsError = false;
-      this.targetCals = Math.round(9.247*currentweight + 3.098*height - 4.330*age + 447.593)
+      this.targetCals = Math.round(9.247 * currentweight + 3.098 * height - 4.330 * age + 447.593  + this.calsWeightLoss)
       return;
     } else{
       return;

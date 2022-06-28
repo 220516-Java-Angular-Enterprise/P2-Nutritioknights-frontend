@@ -12,9 +12,8 @@ import { MainComponent } from './common/main/main.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
 import { FormsModule } from '@angular/forms';
-import { CacheService } from './cache-service';
-import { CachingInterceptor } from './cache-interceptor';
 import { JournalComponent } from './journal/journal.component';
+import { NoCacheHeadersInterceptor } from './no-cache';
 
 @NgModule({
   declarations: [
@@ -38,8 +37,7 @@ import { JournalComponent } from './journal/journal.component';
 
   ], 
   providers: [
-    CacheService,
-    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: NoCacheHeadersInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
