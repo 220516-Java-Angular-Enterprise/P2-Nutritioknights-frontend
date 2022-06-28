@@ -10,6 +10,8 @@ export class JournalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+/*first GET user activity */
+
   }
 
 }
