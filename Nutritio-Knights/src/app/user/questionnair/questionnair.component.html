@@ -1,6 +1,6 @@
 <auth></auth>
-<form class="mb-3">
-    <form (ngSubmit)="processForm(newHealthForm)" #newHealthForm="ngForm">
+<!-- <form class="mb-3">
+    <form (ngSubmit)="processForm(newHealthForm)" #newHealthForm="ngForm"> -->
         <div class="mb-3">
 
     <label for="exampleFormControlInput1" class="form-label">Username</label>
@@ -58,25 +58,46 @@
 
 <br>
 
-<div class="form-group">
-    <div *ngIf="displayFormSubmitError" style="color: red">
-        <br>
-        There's something wrong with your form
-    </div>
+
+
+            <div *ngIf="canCalTargetCalsError" style="color: red">
+                <br>
+                There's something wrong with your form, Cannot calculate Calories
+            </div>
+            
+            <div *ngIf="!canCalTargetCalsError && targetCals !==0" style="color: green">
+                <br>
+                Target Calories is: {{targetCals}}
+            </div>
 
 
     
 
     <br>
 
+            <button class="button"
+                (click)="calculateTargetCals(questionair.age, questionair.sex, questionair.currentweight, questionair.height, questionair.howmuchlose)">Calculate
+        
+                Calories</button>
+    <br>
+    <h4>Done</h4>
+    <div class="form-group">
+        <div *ngIf="displayFormSubmitError" style="color: red">
+            <br>
+            There's something wrong with your form
+        </div>
+
+            <button class="btn btn-success"
+                (click)="processForm(questionair)">Finish From</button>
 
 
-    <input type="submit" value="Submit" class="btn btn-success">
+
+    <!-- <input type="submit" value="Submit" class="btn btn-success"> -->
 </div>
-</form>
-</form>
+<!-- </form>
+</form> -->
 
-        <div *ngIf="canCalTargetCalsError" style="color: red">
+        <!-- <div *ngIf="canCalTargetCalsError" style="color: red">
             <br>
             There's something wrong with your form, Cannot calculate Calories
         </div>
@@ -88,5 +109,5 @@
         
         <button class="button"
             (click)="calculateTargetCals(questionair.age, questionair.sex, questionair.currentweight, questionair.height, questionair.howmuchlose)">Calculate
-            Calories</button>
+            Calories</button> -->
 

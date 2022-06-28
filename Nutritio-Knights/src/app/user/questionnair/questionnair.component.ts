@@ -103,10 +103,10 @@ export class QuestionnairComponent implements OnInit, OnChanges {
     this.questionair.username = this.questionair.username;
   }
 
-  processForm(newHealthForm: NgForm) {
+  processForm(questionair: Questionair) {
     console.log('In process form')
     this.isValisForm()
-    if (newHealthForm.form.status === 'VALID' && this.validForm && !this.canCalTargetCalsError) { //if this restaurant form is valid
+    if (this.validForm && !this.canCalTargetCalsError) { //if this restaurant form is valid
       this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
       console.log(this.questionair.username)
       this.userinfoSend.username = this.questionair.username
