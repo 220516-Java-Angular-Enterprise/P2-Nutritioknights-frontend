@@ -82,7 +82,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
     this.auth.user$.subscribe(u =>{
       this.user = u;
-      this.userInfoSerive.getUserInfoByEmail(this.user.email, false).then(r => {
+      this.userInfoSerive.getUserInfoByEmail(this.user.email).then(r => {
         this.userinfo = r;
         // -------- Redierect if already done questionair
         if(this.userinfo !== null){
