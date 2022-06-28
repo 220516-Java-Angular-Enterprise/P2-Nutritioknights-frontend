@@ -14,6 +14,8 @@ import { QuestionnairComponent } from './user/questionnair/questionnair.componen
 import { FormsModule } from '@angular/forms';
 import { JournalComponent } from './journal/journal.component';
 import { NoCacheHeadersInterceptor } from './no-cache';
+import { UserHomeComponent } from './common/home-page/user-home/user-home.component';
+import { FightComponent } from './fight/fight.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NoCacheHeadersInterceptor } from './no-cache';
     MainComponent,
     HomePageComponent,
     QuestionnairComponent,
-    JournalComponent
+    JournalComponent,
+    UserHomeComponent,
+    FightComponent
   ],
   imports: [
     BrowserModule,
