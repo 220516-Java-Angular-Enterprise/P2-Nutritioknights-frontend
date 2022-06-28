@@ -12,10 +12,10 @@ import { MainComponent } from './common/main/main.component';
 import { HomePageComponent } from './common/home-page/home-page.component';
 import { QuestionnairComponent } from './user/questionnair/questionnair.component';
 import { FormsModule } from '@angular/forms';
-import { RedirectHomeComponent } from './common/redirect-home/redirect-home.component';
-import { CacheService } from './cache-service';
-import { CachingInterceptor } from './cache-interceptor';
-
+import { JournalComponent } from './journal/journal.component';
+import { NoCacheHeadersInterceptor } from './no-cache';
+import { UserHomeComponent } from './common/home-page/user-home/user-home.component';
+import { FightComponent } from './fight/fight.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,9 @@ import { CachingInterceptor } from './cache-interceptor';
     MainComponent,
     HomePageComponent,
     QuestionnairComponent,
-    RedirectHomeComponent
+    JournalComponent,
+    UserHomeComponent,
+    FightComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +41,7 @@ import { CachingInterceptor } from './cache-interceptor';
 
   ], 
   providers: [
-    CacheService,
-    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: NoCacheHeadersInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
