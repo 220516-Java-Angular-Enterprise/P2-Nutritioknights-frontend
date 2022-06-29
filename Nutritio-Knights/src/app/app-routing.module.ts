@@ -7,6 +7,7 @@ import { JournalComponent } from './journal/journal.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { UserHomeComponent } from './common/home-page/user-home/user-home.component';
 import { FightComponent } from './fight/fight.component';
+import { FightUserComponent } from './fight/fight-user/fight-user.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,12 @@ const routes: Routes = [
   {
     path: "fight",
     component: FightComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: "fight/:username",
+    component: FightUserComponent,
     canActivate: [AuthGuard]
   },
 
