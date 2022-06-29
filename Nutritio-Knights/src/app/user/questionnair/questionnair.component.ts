@@ -123,10 +123,13 @@ export class QuestionnairComponent implements OnInit, OnChanges {
       this.userinfoSend.dietPlan = this.questionair.dietplan
       this.userinfoSend.targetCals = this.targetCals
       console.log(this.userinfoSend)
-      this.userInfoSerive.createNewUserInfo(this.user.email, this.userinfoSend); //dependency injection
+      this.userInfoSerive.createNewUserInfo(this.user.email, this.userinfoSend).then( s =>{
+        this.router.navigateByUrl('home')
+      }
+      ); //dependency injection
       this.displayFormSubmitError = false;
       // have to fix redirect
-      this.router.navigateByUrl('home')
+      
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
     }
