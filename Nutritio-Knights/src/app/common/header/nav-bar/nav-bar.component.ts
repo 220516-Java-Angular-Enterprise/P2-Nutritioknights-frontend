@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { UserInfoService } from 'src/app/services/user-info.service';
 
 @Component({
   selector: 'nav-bar',
@@ -8,11 +10,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router: Router, private currRouter: ActivatedRoute) { }
+  constructor(private router: Router, private currRouter: ActivatedRoute,private userInfoService: UserInfoService,private authService: AuthService) { }
 
   username: string = ''
+  user: any  = {};
+
+  showContent: boolean = false;
 
   ngOnInit(): void {
+
+    this.authService.user$.subscribe(u => {
+      this.user = u;
+
+      this.userInfoService.getUserInfoByEmail(this.user.email).then(s =>{
+        this.showContent = true;
+      }).catch(error =>{
+        this.showContent = false;
+      })
+    })
+
+
+
 
   }
 
@@ -33,6 +51,14 @@ export class NavBarComponent implements OnInit {
       this.router.navigateByUrl('home/' + this.username)
     })
   }
+
+  toAvatar() {
+    this.currRouter.params.subscribe(p => {
+      this.username = p['username'];
+      this.router.navigateByUrl('avatar/' + this.username)
+    })
+  }
+  
 
   dummy(){
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Avatar } from 'src/app/models/avatar';
 import { Fight } from 'src/app/models/fight';
 import { Monster } from 'src/app/models/monster';
+import { AvatarService } from 'src/app/services/avatar.service';
 import { FightService } from 'src/app/services/fight.service';
 import { MonsterService } from 'src/app/services/monster.service';
 
@@ -12,7 +14,7 @@ import { MonsterService } from 'src/app/services/monster.service';
 })
 export class FightUserComponent implements OnInit {
 
-  constructor(private router: Router, private currRouter: ActivatedRoute, private fightService:FightService, private monsterService: MonsterService) { }
+  constructor(private router: Router, private currRouter: ActivatedRoute, private fightService:FightService, private monsterService: MonsterService, private avatarService: AvatarService) { }
 
   username: string = ''
   fightHistory: Fight[] = [];
@@ -36,16 +38,26 @@ export class FightUserComponent implements OnInit {
 }
 
   ngOnInit(): void {
-    // 1. get user history
-    this.getFightHistory()
 
-    // 2. get current fight
-    this.getCurrentFight()
+    //must have avatar so it must insure
 
-    //3. get all monsters
-    this.getAllMonsters()
+    this.currRouter.params.subscribe(p => {
+      this.username = p['username'];
+      this.avatarService.getAvatarByUsername(this.username).then(ava => {
+        // 1. get user history
 
-    console.log(this.selectedMonster)
+        this.getFightHistory()
+
+        // 2. get current fight
+        this.getCurrentFight()
+
+        //3. get all monsters
+        this.getAllMonsters()
+      }).catch(err =>{
+        // redirect to create avatar
+      })
+    })
+
 
   }
 
@@ -145,5 +157,7 @@ export class FightUserComponent implements OnInit {
       this.showFightRequestError = true;
     }
   }
+
+
 
 }
