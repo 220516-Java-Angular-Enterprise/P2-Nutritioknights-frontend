@@ -5,6 +5,7 @@ import { FoodEntry } from 'src/app/models/food-entry';
 import { FoodService } from 'src/app/services/food.service';
 import { JournalService } from 'src/app/services/journal.service';
 import { Serving } from 'src/app/models/serving';
+import { FoodSearchResult } from 'src/app/models/food-search-result';
 @Component({
   selector: 'app-journal-user',
   templateUrl: './journal-user.component.html',
@@ -24,19 +25,76 @@ export class JournalUserComponent implements OnInit {
     brandName: '',
     servings: []
   }
+
+  selectedServing:Serving = {
+    servingId: 0,
+    servingDescription: '',
+    servingUrl: '',
+    metricServingAmount: 0,
+    metricServingUnit: '',
+    numberOfUnits: 0,
+    measurementDescription: '',
+    calories: 0,
+    carbohydrate: 0,
+    protein: 0,
+    fat: 0,
+    saturatedFat: 0,
+    polyunsaturatedFat: 0,
+    monounsaturatedFat: 0,
+    transFat: undefined,
+    cholesterol: 0,
+    sodium: 0,
+    potassium: 0,
+    fiber: 0,
+    sugar: 0,
+    vitaminA: 0,
+    vitaminC: 0,
+    calcium: 0,
+    iron: 0
+  }
+  searchResults:FoodSearchResult = {
+    pageNumber: 0,
+    maxResults: 50,
+    totalResults: 0,
+    results: []
+  }
   constructor(private journalService:JournalService,  private foodService: FoodService, private currRouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    //assign username, then do stuff
+    this.currRouter.params.subscribe(p=> {
+      this.username = p['username'];
+      //get userentries by date
+      this.journalService.getUserEntriesByDate(this.journalService.getDateInt(),this.username).then(entries => {
+      
+      })
+  //initialize user activity in case they wanna display past entries
+    this.getActivity(this.username)
+  })
 
-    // get user's entries for today on init*/
-    this.getTodayEntries()
     
-    //initialize user activity if they wanna display past entries
-    this.getActivity()
+    
   }
 
-  getTodayEntries(){}
-  getActivity(){}
+  getTodayEntries(){
+   
+  }
+  getActivity(u:string){}
 
+  //populates selectedFood with values
+  selectFood(){}
   
+  //populates selectedServing with values
+  selectServing(){}
+  
+  //save an entry.  
+  saveEntry(){}
+  
+  //deletes an entry given an id. Means we must pull it from the database in order to be able to delete it.
+  deleteEntry(){}
+
+  //search food database given a search term.
+  searchFood(){}
+  //same as searchfood, but gets the second page if there is one.
+  searchFoodPage(){}
 }
