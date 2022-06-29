@@ -16,6 +16,7 @@ import { JournalComponent } from './journal/journal.component';
 import { NoCacheHeadersInterceptor } from './no-cache';
 import { UserHomeComponent } from './common/home-page/user-home/user-home.component';
 import { FightComponent } from './fight/fight.component';
+import { FightUserComponent } from './fight/fight-user/fight-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FightComponent } from './fight/fight.component';
     QuestionnairComponent,
     JournalComponent,
     UserHomeComponent,
-    FightComponent
+    FightComponent,
+    FightUserComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Food } from '../models/food';
+import { CompactFood, FoodSearchResult } from '../models/food-search-result';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,5 +24,6 @@ searchFood(query:string): Observable<FoodSearchResult>{
   return this.http.get<FoodSearchResult>(url,{params:queryParams});
 }
 
-searchFoodPage(query:string,page:number):Observable<CompactFood[]>
+// searchFoodPage(query:string,page:number):Observable<CompactFood[]>{}
 }
+
