@@ -1,2 +1,24 @@
 <nav-bar></nav-bar>
 <p>fight-user works!</p>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <th>Monster Name</th>
+            <th>Who Won</th>
+            <th colspan="2"></th>
+        </thead>
+        <tbody>
+            <!-- ngFor is a structural directive that loops through an array and takes actions  i.e. for(Restaurant resto : restaurants)-->
+            <tr *ngFor="let fight of fightHistory">
+                <!-- Interpolation: readonly -->
+                <td>{{(fight.monster_id | keyvalue)[3].value}}</td>
+                <td *ngIf="fight.fight_monster_hp===0">{{username}}</td>
+                <td *ngIf="fight.fight_monster_hp!==0">{{(fight.monster_id | keyvalue)[3].value}}</td>
+
+        </tbody>
+    </table>
+
+    <br>
+
+</div>

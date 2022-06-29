@@ -15,17 +15,17 @@ export class UserInfoService {
   getUserInfoByEmail(email: string): Promise<UserInfo> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("e",email);
-    return firstValueFrom(this.http.get<UserInfo>(this.userURL,{params:queryParams}).pipe(retry(15)));
+    return firstValueFrom(this.http.get<UserInfo>(this.userURL,{params:queryParams}).pipe(retry(5)));
   }
 
   getUserInfoByUsername(username: string): Promise<UserInfo> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("u", username);
-    return firstValueFrom(this.http.get<UserInfo>(this.userURL, { params: queryParams }).pipe(retry(25)));
+    return firstValueFrom(this.http.get<UserInfo>(this.userURL, { params: queryParams }).pipe(retry(5)));
   }
 
   createNewUserInfo(email: string, quest: UserInfo) {
-    return firstValueFrom(this.http.post(this.userURL, quest, { responseType: 'text' })); // this is a post request
+    return firstValueFrom(this.http.post(this.userURL, quest, { responseType: 'json' })); // this is a post request
   }
 
 
