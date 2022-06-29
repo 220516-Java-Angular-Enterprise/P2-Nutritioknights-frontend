@@ -1,7 +1,97 @@
 <nav-bar></nav-bar>
-<p>fight-user works!</p>
+
+<div *ngIf="hasCurrentFight===false" class="container">
+    <h3>No Current Fight</h3>
+    <button type="button" (click)="newFight()">Create New Battle</button>
+</div>
+
+
+<div *ngIf="userNewFight===true" class="container">
+    <h3>Select Monster:</h3>
+    <table *ngIf="selectedMonster===''" class="table table-hover">
+        <thead>
+            <th>Monster Name</th>
+            <th>Monster HP</th>
+            <th>XP given</th>
+            <th>Attack Power</th>
+            <th colspan="4"></th>
+        </thead>
+        <tbody>
+            <!-- ngFor is a structural directive that loops through an array and takes actions  i.e. for(Restaurant resto : restaurants)-->
+            <tr *ngFor="let monster of monsterList" (click) = "assignMonster(monster.id, monster.monster_name)">
+                <!-- Interpolation: readonly -->
+                <td>{{monster.monster_name}}</td>
+                <td>{{monster.monster_max_hp}}</td>
+                <td>{{monster.xp_given}}</td>
+                <td>{{monster.attackPower}}</td>
+        </tbody>
+    </table>
+
+    <h4 *ngIf="selectedMonster!==''"> {{selectedMonsterName}}</h4>
+
+    <button *ngIf="selectedMonster!==''" type="button" (click)="changeMonster()">Change Monster</button>
+    <br>
+    <br>
+
+    <button type="button" (click)="confirmNewFight()">Confirm</button>
+    <button type="button" (click)="cancelNewFight()">Cancel Fight Request</button>
+
+    <br>
+
+</div>
+
+<div *ngIf="hasCurrentFight===true" class="container">
+    <h3>{{username}} current fight:</h3>
+    <table class="table table-hover">
+        <thead>
+            <th>Attribute</th>
+            <th>User Info</th>
+            <th>Monster Info</th>
+            <th colspan="3"></th>
+        </thead>
+        <tbody>
+            <!-- ngFor is a structural directive that loops through an array and takes actions  i.e. for(Restaurant resto : restaurants)-->
+            <tr>
+                <td>Name</td>
+                <td>{{username}}</td>
+                <td>{{(currentFight.monster_id| keyvalue)[3].value}}</td>
+            </tr>
+
+            <tr>
+                <td>Health</td>
+                <td>{{currentFight.fight_avatar_hp}}</td>
+                <td>{{currentFight.fight_monster_hp}}</td>
+            </tr>
+
+            <tr>
+                <td>Current Hits</td>
+                <td>{{(currentFight.username| keyvalue)[0].value}}</td>
+                <td>{{currentFight.monster_hits}}</td>
+            </tr>
+
+                <button type="button" (click)="progressFight()">Progress Fight</button>
+
+            
+            
+            
+                <!-- Interpolation: readonly -->
+                <!-- <td>{{(fight.monster_id | keyvalue)[3].value}}</td>
+                <td *ngIf="fight.fight_monster_hp===0">{{username}}</td>
+                <td *ngIf="fight.fight_monster_hp!==0">{{(fight.monster_id | keyvalue)[3].value}}</td> -->
+
+        </tbody>
+    </table>
+
+    <br>
+
+</div>
+
+    <br>
+
+   
 
 <div class="container">
+    <h3>{{username}} fight history:</h3> 
     <table class="table table-hover">
         <thead>
             <th>Monster Name</th>
@@ -13,8 +103,8 @@
             <tr *ngFor="let fight of fightHistory">
                 <!-- Interpolation: readonly -->
                 <td>{{(fight.monster_id | keyvalue)[3].value}}</td>
-                <td *ngIf="fight.fight_monster_hp===0">{{username}}</td>
-                <td *ngIf="fight.fight_monster_hp!==0">{{(fight.monster_id | keyvalue)[3].value}}</td>
+                <td *ngIf="fight.fight_monster_hp===0">Vanquished</td>
+                <td *ngIf="fight.fight_monster_hp!==0">Lost</td>
 
         </tbody>
     </table>
