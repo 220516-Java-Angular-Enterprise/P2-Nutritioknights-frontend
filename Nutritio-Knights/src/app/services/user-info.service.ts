@@ -25,7 +25,7 @@ export class UserInfoService {
   }
 
   createNewUserInfo(email: string, quest: UserInfo) {
-    return firstValueFrom(this.http.post(this.userURL, quest, { responseType: 'json' })); // this is a post request
+    return firstValueFrom(this.http.post(this.userURL, quest, { responseType: 'text' })); // this is a post request
   }
 
 
