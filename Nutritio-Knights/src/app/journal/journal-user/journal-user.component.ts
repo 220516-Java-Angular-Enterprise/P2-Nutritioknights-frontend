@@ -20,7 +20,8 @@ export class JournalUserComponent implements OnInit {
   username: string = ''
   activity: String[] = [];
   todayEntries: FoodEntry[] = [];
-  todayFoods: JournalEntry[] =[];
+  todayFoods: Food[] =[];
+  todayServings: Serving[]=[];
 
   selectedServing:Serving = {
     servingId: 0,
@@ -71,27 +72,30 @@ export class JournalUserComponent implements OnInit {
   getActivity(u:string){
     this.journalService.getActivity(u).then(a => {
       this.activity = a;
-      console.log(a)
     }
     )
   }
   getTodayEntries(u:string){
     this.journalService.getUserEntriesByDate(this.journalService.getDateInt(),u).then( entries => {
-      
       this.todayEntries = entries;
-      for (var foodEntry of entries){
+    }).then(entries => {
+      for (var foodEntry of this.todayEntries){
         this.foodService.getFood(foodEntry.food_id).then(food => {          
-          const newJournalEntry: JournalEntry = {food:food, entry:foodEntry}
-          this.todayFoods.push(structuredClone(newJournalEntry));
-          console.log(food);
-        })
-      this.hasEntriesToday = true;          
+          this.todayFoods.push(structuredClone(food));
+        })          
       }
-      
-
     }).catch(error => {
       this.hasEntriesToday = false;
       this.todayEntries = [];
+    }).then(trimServings => {
+      for (let i = 0; i < this.todayFoods.length; i++) {
+      this.todayServings.concat(this.todayFoods[i].servings.filter(serving => serving.servingId == this.todayEntries[i].serving_id));
+      }
+    }).then( done =>{
+      this.hasEntriesToday = true;
+      console.log(this.todayEntries);
+      console.log(this.todayFoods);
+      console.log(this.todayServings);
     })
     
   }
