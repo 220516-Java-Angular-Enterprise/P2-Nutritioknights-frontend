@@ -21,13 +21,13 @@
         </thead>
         <tbody>
 
-            <tr *ngFor="let element of todayFoods" >
-                <td>{{element.food.name}}</td>
-                <td>{{element.entry.serving_amt}}</td>
-                <td>{{element.food.servings[0].calories*element.entry.serving_amt}}</td>
-                <td>{{element.food.servings[0].protein*element.entry.serving_amt}}</td>
-                <td>{{element.food.servings[0].fat*element.entry.serving_amt}}</td>
-                <td>{{element.food.servings[0].carbohydrate*element.entry.serving_amt}}</td>
+            <tr *ngFor="let foodItem of todayFoods; let i = index;" >
+                <td>{{foodItem.name}}</td>
+                <td>{{todayEntries[i].serving_amt}}</td>
+                <td>{{foodItem.servings[0].calories*todayEntries[i].serving_amt}}</td>
+                <td>{{foodItem.servings[0].protein*todayEntries[i].serving_amt}}</td>
+                <td>{{foodItem.servings[0].fat*todayEntries[i].serving_amt}}</td>
+                <td>{{foodItem.servings[0].carbohydrate*todayEntries[i].serving_amt}}</td>
         </tbody>
     </table>
 </div>
