@@ -52,7 +52,7 @@ export class JournalUserComponent implements OnInit {
     calcium: 0,
     iron: 0
   }
-  searchResults:FoodSearchResult = {
+  searchResult:FoodSearchResult = {
     pageNumber: 0,
     maxResults: 50,
     totalResults: 0,
@@ -61,25 +61,26 @@ export class JournalUserComponent implements OnInit {
   constructor(private journalService:JournalService,  private foodService: FoodService, private currRouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    //assign username, then do stuff
+    //assign username, then initialize
     this.currRouter.params.subscribe(p=> {
       this.username = p['username'];
-      //get userentries by date
+      //get userentries for today
       this.journalService.getUserEntriesByDate(this.journalService.getDateInt(),this.username).then(entries => {
       
       })
-  //initialize user activity in case they wanna display past entries
-    this.getActivity(this.username)
-  })
-
-    
-    
+      //get user activity in order to display past entries
+      this.getActivity(this.username)
+  })  
   }
+  
 
-  getTodayEntries(){
-   
+  getActivity(u:string){
+    this.journalService.getActivity(u).then(a => {
+      this.activity = a;
+      console.log(a)
+    }
+    )
   }
-  getActivity(u:string){}
 
   //populates selectedFood with values
   selectFood(){}
@@ -94,7 +95,13 @@ export class JournalUserComponent implements OnInit {
   deleteEntry(){}
 
   //search food database given a search term.
-  searchFood(){}
-  //same as searchfood, but gets the second page if there is one.
+  searchFood(query:string){
+    this.foodService.searchFood(query).then(r => {
+      this.searchResult= r;
+        
+    }
+    )
+  }
+  //same as searchfood, but gets the selected  page if there is one.
   searchFoodPage(){}
 }
