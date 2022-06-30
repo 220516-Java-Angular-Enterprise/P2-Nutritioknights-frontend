@@ -97,8 +97,7 @@ export class JournalUserComponent implements OnInit {
   //search food database given a search term.
   searchFood(query:string){
     this.foodService.searchFood(query).then(r => {
-      this.searchResult= r;
-        
+      this.searchResult= r;        
     }
     )
   }
