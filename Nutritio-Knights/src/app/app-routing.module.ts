@@ -7,6 +7,9 @@ import { JournalComponent } from './journal/journal.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { UserHomeComponent } from './common/home-page/user-home/user-home.component';
 import { FightComponent } from './fight/fight.component';
+import { FightUserComponent } from './fight/fight-user/fight-user.component';
+import { AvatarComponent } from './avatar/avatar.component';
+import { UserAvatarComponent } from './avatar/user-avatar/user-avatar.component';
 
 
 const routes: Routes = [
@@ -41,7 +44,25 @@ const routes: Routes = [
   },
 
   {
-    path: "journal",
+    path: "fight/:username",
+    component: FightUserComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: "avatar",
+    component: AvatarComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: "avatar/:username",
+    component: UserAvatarComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: "journal/:username",
     component: JournalComponent,
     canActivate: [AuthGuard]
   },
