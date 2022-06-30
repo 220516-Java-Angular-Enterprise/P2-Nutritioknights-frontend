@@ -13,10 +13,10 @@
     <img class="logo" src="../../../../assets/logo.png">
     <nav>
       <ul class="nav__links">
-        <li><button *ngIf="showContent" class="button" (click)= "toHome()">Home</button></li>
-        <li><button *ngIf="showContent" class="button" (click)="toJournal()">My Journal</button></li>
-        <li><button *ngIf="showContent" class="button" (click)= "toFight()">Fight</button></li>
-        <li><button *ngIf="showContent" class="button" (click)="toAvatar()">My NutritioKnight</button></li>
+        <li><button class="header-butt" *ngIf="showContent" class="button" (click)= "toHome()">Home</button></li>
+        <li><button class="header-butt" *ngIf="showContent" class="button" (click)="toJournal()">My Journal</button></li>
+        <li><button class="header-butt" *ngIf="showContent" class="button" (click)= "toFight()">Fight</button></li>
+        <li><button class="header-butt" *ngIf="showContent" class="button" (click)="toAvatar()">My NutritioKnight</button></li>
       </ul>
     </nav>
     <auth></auth>
