@@ -10,7 +10,7 @@
 
 li, a{
     font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(69, 69, 83);
     text-decoration: none;
 }
@@ -33,18 +33,26 @@ header{
 
 .nav__links li{
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 30px;
 }
 
-.nav__links li a{
-    transition: all 0.3 ease 0s;
-}
-
-.nav__links li a:hover{
-    color: black;
-}
 
 .nav__links li a:last-child{
    margin-right: 25px;
 
+}
+
+button{
+    border-color: #f7efef;
+    outline: none;
+    border: none;
+    transition: all 0.3 ease 0s;
+}
+
+button:hover{
+    color: darkslategrey;
+}
+
+auth{
+    padding-left: 20px;
 }
