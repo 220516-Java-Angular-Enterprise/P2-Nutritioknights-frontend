@@ -5,6 +5,7 @@ import { UserInfo } from 'src/app/models/userinfo';
 import { Router } from '@angular/router';
 import { Questionair } from 'src/app/models/questionair';
 import { NgForm } from '@angular/forms';
+import { AvatarService } from 'src/app/services/avatar.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { NgForm } from '@angular/forms';
 })
 export class QuestionnairComponent implements OnInit, OnChanges {
 
-  constructor(private auth: AuthService, private userInfoSerive: UserInfoService, private router: Router) { }
+  constructor(private auth: AuthService, private userInfoSerive: UserInfoService, private router: Router, private avatarService: AvatarService) { }
 
   user: any = {}
   sexes:Array<string>= ['Male','Female','Intersex'];
@@ -123,10 +124,14 @@ export class QuestionnairComponent implements OnInit, OnChanges {
       this.userinfoSend.dietPlan = this.questionair.dietplan
       this.userinfoSend.targetCals = this.targetCals
       console.log(this.userinfoSend)
-      this.userInfoSerive.createNewUserInfo(this.user.email, this.userinfoSend); //dependency injection
+      this.userInfoSerive.createNewUserInfo(this.user.email, this.userinfoSend).then( s =>{
+        this.avatarService.createNewAvatar(this.userinfoSend.username, this.userinfoSend.sex)
+        this.router.navigateByUrl('home')
+      }
+      ); //dependency injection
       this.displayFormSubmitError = false;
       // have to fix redirect
-      this.router.navigateByUrl('home')
+      
     } else {
       this.displayFormSubmitError = true; // if not correct that means there is an error in the form
     }
