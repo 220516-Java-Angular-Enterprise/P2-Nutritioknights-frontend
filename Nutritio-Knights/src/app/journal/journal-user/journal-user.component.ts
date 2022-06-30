@@ -20,16 +20,7 @@ export class JournalUserComponent implements OnInit {
   username: string = ''
   activity: String[] = [];
   todayEntries: FoodEntry[] = [];
-  todayFoods = new Map<FoodEntry,Food>();
-  selectedFood:Food = {
-    name: '',
-    url: '',
-    type: '',
-    id: 0,
-    description: '',
-    brandName: '',
-    servings: []
-  }
+  todayFoods: JournalEntry[] =[];
 
   selectedServing:Serving = {
     servingId: 0,
@@ -89,9 +80,9 @@ export class JournalUserComponent implements OnInit {
       
       this.todayEntries = entries;
       for (var foodEntry of entries){
-        this.foodService.getFood(foodEntry.food_id).then(food => {
-          food.servings=food.servings.filter(obj => {return obj.servingId === foodEntry.serving_id});
-          this.todayFoods.set(foodEntry,food);
+        this.foodService.getFood(foodEntry.food_id).then(food => {          
+          const newJournalEntry: JournalEntry = {food:food, entry:foodEntry}
+          this.todayFoods.push(structuredClone(newJournalEntry));
           console.log(food);
         })
       this.hasEntriesToday = true;          
@@ -101,7 +92,6 @@ export class JournalUserComponent implements OnInit {
     }).catch(error => {
       this.hasEntriesToday = false;
       this.todayEntries = [];
-      this.todayFoods.clear();
     })
     
   }
