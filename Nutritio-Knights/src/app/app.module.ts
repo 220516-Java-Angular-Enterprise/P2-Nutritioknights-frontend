@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from '@auth0/auth0-angular';
@@ -17,8 +16,10 @@ import { NoCacheHeadersInterceptor } from './no-cache';
 import { UserHomeComponent } from './common/home-page/user-home/user-home.component';
 import { FightComponent } from './fight/fight.component';
 import { FightUserComponent } from './fight/fight-user/fight-user.component';
+import { JournalUserComponent } from './journal/journal-user/journal-user.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { UserAvatarComponent } from './avatar/user-avatar/user-avatar.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UserAvatarComponent } from './avatar/user-avatar/user-avatar.component'
     UserHomeComponent,
     FightComponent,
     FightUserComponent,
+    JournalUserComponent,
     AvatarComponent,
     UserAvatarComponent
   ],
