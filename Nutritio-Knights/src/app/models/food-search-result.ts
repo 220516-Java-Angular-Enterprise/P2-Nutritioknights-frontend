@@ -1,6 +1,4 @@
-export interface FoodSearchResult {
-
-}
+import {CompactFood } from 'src/app/models/compact-food';
 export interface FoodSearchResult {
     pageNumber: number;
     maxResults: number;
@@ -8,12 +6,5 @@ export interface FoodSearchResult {
     results: CompactFood[];
   }
   
-  export interface CompactFood {
-    name: string;
-    url: string;
-    type: string;
-    id: number;
-    description: string;
-    brandName: any;
-  }
+ 
   
