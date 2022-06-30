@@ -21,7 +21,6 @@ export class JournalUserComponent implements OnInit {
   activity: String[] = [];
   todayEntries: FoodEntry[] = [];
   todayFoods: Food[] =[];
-  todayServings: Serving[]=[];
 
   selectedServing:Serving = {
     servingId: 0,
@@ -80,22 +79,18 @@ export class JournalUserComponent implements OnInit {
       this.todayEntries = entries;
     }).then(entries => {
       for (var foodEntry of this.todayEntries){
-        this.foodService.getFood(foodEntry.food_id).then(food => {          
+        this.foodService.getFoodWithServing(foodEntry.food_id,foodEntry.serving_id).then(food => {          
           this.todayFoods.push(structuredClone(food));
         })          
       }
     }).catch(error => {
       this.hasEntriesToday = false;
       this.todayEntries = [];
-    }).then(trimServings => {
-      for (let i = 0; i < this.todayFoods.length; i++) {
-      this.todayServings.concat(this.todayFoods[i].servings.filter(serving => serving.servingId == this.todayEntries[i].serving_id));
-      }
+      this.todayFoods = [];
     }).then( done =>{
       this.hasEntriesToday = true;
       console.log(this.todayEntries);
       console.log(this.todayFoods);
-      console.log(this.todayServings);
     })
     
   }
