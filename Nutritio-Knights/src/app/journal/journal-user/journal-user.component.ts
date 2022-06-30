@@ -13,9 +13,12 @@ import { FoodSearchResult } from 'src/app/models/food-search-result';
 })
 export class JournalUserComponent implements OnInit {
   
+
+  hasEntriesToday: boolean = false;
   username: string = ''
   activity: String[] = [];
   todayEntries: FoodEntry[] = [];
+  todayFoods = new Map<FoodEntry,Food>();
   selectedFood:Food = {
     name: '',
     url: '',
@@ -65,12 +68,10 @@ export class JournalUserComponent implements OnInit {
     this.currRouter.params.subscribe(p=> {
       this.username = p['username'];
       //get userentries for today
-      this.journalService.getUserEntriesByDate(this.journalService.getDateInt(),this.username).then(entries => {
-      
-      })
+      this.getTodayEntries(p['username'])
       //get user activity in order to display past entries
-      this.getActivity(this.username)
-  })  
+      this.getActivity(p['username'])
+    })  
   }
   
 
@@ -81,7 +82,27 @@ export class JournalUserComponent implements OnInit {
     }
     )
   }
+  getTodayEntries(u:string){
+    this.journalService.getUserEntriesByDate(this.journalService.getDateInt(),u).then( entries => {
+      
+      this.todayEntries = entries;
+      for (var foodEntry of entries){
+        this.foodService.getFood(foodEntry.food_id).then(food => {
+          food.servings=food.servings.filter(obj => {return obj.servingId === foodEntry.serving_id});
+          this.todayFoods.set(foodEntry,food);
+          console.log(food);
+        })
+      this.hasEntriesToday = true;          
+      }
+      
 
+    }).catch(error => {
+      this.hasEntriesToday = false;
+      this.todayEntries = [];
+      this.todayFoods.clear();
+    })
+    
+  }
   //populates selectedFood with values
   selectFood(){}
   

@@ -1,4 +1,4 @@
-export interface FoodEntry {
+export interface FoodEntry{
     entry_id: string
     mealname_id: number
     dateInt: number
