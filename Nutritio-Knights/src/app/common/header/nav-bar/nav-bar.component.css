@@ -48,3 +48,8 @@ header{
    margin-right: 25px;
 
 }
+
+button{
+    border: none;
+    outline: none;
+}
