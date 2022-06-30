@@ -1,2 +1,7 @@
 <nav-bar></nav-bar>
-<p>user-avatar works!</p>
+<h1>Avatar Stats</h1>
+<h4>Level: {{ (avatar.level|keyvalue)[1].value}}</h4>
+<h4>HP: {{ (avatar.level|keyvalue)[2].value}}</h4>
+<h4>Attack Power: {{ (avatar.level|keyvalue)[0].value}}</h4>
+<h4>Xp: {{avatar.xp}}/{{ (avatar.level|keyvalue)[3].value}} </h4>
+<h4>Attacks: {{avatar.attacks}}</h4>

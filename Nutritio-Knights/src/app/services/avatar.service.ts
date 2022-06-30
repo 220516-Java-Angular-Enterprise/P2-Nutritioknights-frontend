@@ -14,7 +14,7 @@ export class AvatarService {
 
 
   createNewAvatar(username: string, gender: string) {
-    return firstValueFrom(this.http.post(this.avatarURL, {'username':username, 'gender':gender }, { responseType: 'json' })); // this is a post request
+    return firstValueFrom(this.http.post(this.avatarURL, {'username':username, 'gender':gender }, { responseType: 'text' })); // this is a post request
   }
 
   getAvatarByUsername(username: string): Promise<Avatar> {

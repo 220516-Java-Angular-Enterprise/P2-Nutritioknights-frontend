@@ -29,9 +29,6 @@ export class NavBarComponent implements OnInit {
       })
     })
 
-
-
-
   }
 
   toFight(){

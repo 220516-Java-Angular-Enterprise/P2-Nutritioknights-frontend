@@ -98,6 +98,8 @@ export class QuestionnairComponent implements OnInit, OnChanges {
 
   calsWeightLoss: number = 0;
 
+  errorForm:boolean = false;
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log("a change has happened")
     console.log(changes)
@@ -110,6 +112,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
   processForm(questionair: Questionair) {
     console.log('In process form')
     this.isValisForm()
+    this.errorForm = false;
     if (this.validForm && !this.canCalTargetCalsError) { //if this restaurant form is valid
       this.calculateTargetCals(this.questionair.age, this.questionair.sex, this.questionair.currentweight, this.questionair.height, this.questionair.howmuchlose)
       console.log(this.questionair.username)
@@ -128,7 +131,9 @@ export class QuestionnairComponent implements OnInit, OnChanges {
         this.avatarService.createNewAvatar(this.userinfoSend.username, this.userinfoSend.sex)
         this.router.navigateByUrl('home')
       }
-      ); //dependency injection
+      ).catch( error =>{
+        this.errorForm = true;
+      }); //dependency injection
       this.displayFormSubmitError = false;
       // have to fix redirect
       
