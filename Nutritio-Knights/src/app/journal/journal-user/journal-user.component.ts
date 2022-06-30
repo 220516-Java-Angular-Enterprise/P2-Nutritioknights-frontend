@@ -6,6 +6,8 @@ import { FoodService } from 'src/app/services/food.service';
 import { JournalService } from 'src/app/services/journal.service';
 import { Serving } from 'src/app/models/serving';
 import { FoodSearchResult } from 'src/app/models/food-search-result';
+import { JournalEntry } from 'src/app/models/journal-entry';
+
 @Component({
   selector: 'app-journal-user',
   templateUrl: './journal-user.component.html',
