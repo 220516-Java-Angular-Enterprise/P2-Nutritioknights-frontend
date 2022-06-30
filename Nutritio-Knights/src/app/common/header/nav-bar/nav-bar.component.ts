@@ -42,7 +42,7 @@ export class NavBarComponent implements OnInit {
   }
   
   toJournal() {
-    this.router.navigateByUrl('journal')
+    this.router.navigateByUrl('journal/' + this.username)
   }
 
   toHome() {
