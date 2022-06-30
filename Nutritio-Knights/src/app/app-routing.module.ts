@@ -62,7 +62,7 @@ const routes: Routes = [
   },
 
   {
-    path: "journal",
+    path: "journal/:username",
     component: JournalComponent,
     canActivate: [AuthGuard]
   },
