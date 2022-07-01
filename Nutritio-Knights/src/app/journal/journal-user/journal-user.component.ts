@@ -6,6 +6,7 @@ import { FoodService } from 'src/app/services/food.service';
 import { JournalService } from 'src/app/services/journal.service';
 import { Serving } from 'src/app/models/serving';
 import { FoodSearchResult } from 'src/app/models/food-search-result';
+import { FoodEntryPretty } from 'src/app/models/food-entry-pretty';
 
 @Component({
   selector: 'app-journal-user',
@@ -18,7 +19,7 @@ export class JournalUserComponent implements OnInit {
   hasEntriesToday: boolean = false;
   username: string = '';
   activity: String[] = [];
-  todayEntries: FoodEntry[] = [];
+  todayEntries: FoodEntryPretty[] = [];
   todayFoods: Food[] =[];
   hasSearched: boolean = false;
   query: string = '';
@@ -62,7 +63,7 @@ export class JournalUserComponent implements OnInit {
     )
   }
   getTodayEntries(u:string){
-    this.journalService.getUserEntriesByDate(this.journalService.getDateInt(),u).then( entries => {
+    this.journalService.getUserEntriesByDatePretty(this.journalService.getDateInt(),u).then( entries => {
       this.todayEntries = entries;
     }).then(entries => {
       for (var foodEntry of this.todayEntries){
@@ -99,8 +100,10 @@ export class JournalUserComponent implements OnInit {
   //save an entry.  
   
   //deletes an entry given an id. Means we must pull it from the database in order to be able to delete it.
-  deleteEntry(id: number){
-    this.journalService.deleteEntry(this.todayEntries[id].entry_id).then(response =>{
+  deleteEntry(id: string){
+    this.journalService.deleteEntry(id).then(response =>{
+  }).then(redirect =>{
+    this.router.navigateByUrl('journal');
   }).catch(error =>{
     console.log(error.message);
   })
@@ -123,6 +126,8 @@ export class JournalUserComponent implements OnInit {
       username: this.username  } as FoodEntry
     this.journalService.postEntry(foodEntry).then( resp => {
       console.log(resp);
+    }).then(redirect =>{
+      this.router.navigateByUrl('journal');
     }).catch(err =>{
       console.log(err.message);
     })
