@@ -1,7 +1,53 @@
-<nav-bar></nav-bar>
-<h1>Avatar Stats</h1>
+<!-- <nav-bar></nav-bar> -->
+<!-- <h1>Avatar Stats</h1>
 <h4>Level: {{ (avatar.level|keyvalue)[1].value}}</h4>
 <h4>HP: {{ (avatar.level|keyvalue)[2].value}}</h4>
 <h4>Attack Power: {{ (avatar.level|keyvalue)[0].value}}</h4>
 <h4>Xp: {{avatar.xp}}/{{ (avatar.level|keyvalue)[3].value}} </h4>
-<h4>Attacks: {{avatar.attacks}}</h4>
+<h4>Attacks: {{avatar.attacks}}</h4> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My NutritioKnight</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <nav-bar></nav-bar>
+    <section class="dashboard">
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Avator Dashboard</span>
+                </div>
+    
+                <div class="boxes">
+                    <div class="box box1">
+                        <span class="text">Level</span>
+                        <span class="number">{{ (avatar.level|keyvalue)[1].value}}</span>
+                    </div>
+                    <div class="box box2">
+                        <span class="text">Health Power</span>
+                        <span class="number">{{ (avatar.level|keyvalue)[2].value}}</span>
+                    </div>
+                    <div class="box box3">
+                        <span class="text">Attack Power</span>
+                        <span class="number">{{ (avatar.level|keyvalue)[0].value}}</span>
+                    </div>
+                    <div class="box box4">
+                        <span class="text">Experience Point</span>
+                        <span class="number"> {{avatar.xp}}/{{ (avatar.level|keyvalue)[3].value}}</span>
+                    </div>
+                    <div class="box box5">
+                        <span class="text">Attacks</span>
+                        <span class="number">{{avatar.attacks}}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+</body>
+</html>
