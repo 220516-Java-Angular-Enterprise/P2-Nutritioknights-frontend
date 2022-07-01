@@ -12,20 +12,20 @@ export class JournalService {
   constructor(private http: HttpClient) { }
 
   getEntry(id:string): Promise<FoodEntry>{
-    const url = 'http://localhost:8080/nutritioknights/journal/entry';
+    const url = 'http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/entry';
     let queryParams = new HttpParams();
     queryParams = queryParams.append("id",id);
     return firstValueFrom(this.http.get<FoodEntry>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
   }
   getActivity(username:string): Promise<String[]>{
-    const url = 'http://localhost:8080/nutritioknights/journal/activity';
+    const url = 'http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/activity';
     let queryParams = new HttpParams();
     queryParams = queryParams.append("u",username);
     return firstValueFrom(this.http.get<String[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
   }
 
   getUserEntriesByDate(date:number,username:string): Promise<FoodEntry[]>{
-    const url = 'http://localhost:8080/nutritioknights/journal/date';
+    const url = 'http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/date';
     let queryParams = new HttpParams();
     queryParams = queryParams.append("d",date);
     queryParams = queryParams.append("u",username);
@@ -33,7 +33,7 @@ export class JournalService {
     
   }
   getUserEntriesByDatePretty(date:number,username:string): Promise<FoodEntryPretty[]>{
-    const url = 'http://localhost:8080/nutritioknights/journal/pretty';
+    const url = 'http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/pretty';
     let queryParams = new HttpParams();
     queryParams = queryParams.append("d",date);
     queryParams = queryParams.append("u",username);
@@ -41,14 +41,14 @@ export class JournalService {
     
   }
   getUserEntriesByMealname(mealname:number, username:string):Promise<FoodEntry[]>{
-    const url = 'http://localhost:8080/nutritioknights/journal/suggest';
+    const url = 'http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/suggest';
     let queryParams = new HttpParams();
     queryParams = queryParams.append("m",mealname);
     queryParams = queryParams.append("u",username);
     return firstValueFrom(this.http.get<FoodEntry[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5))); 
   }
   postEntry(request:FoodEntry):Promise<String>{
-    const url = 'http://localhost:8080/nutritioknights/journal/';
+    const url = 'http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/';
     console.log(request);
     return firstValueFrom(this.http.post<String>(url,request,{ responseType: 'json' })); 
   }
@@ -61,7 +61,7 @@ export class JournalService {
   // }
   async deleteEntry(target:string|undefined):Promise<String>{
     try {
-      const response = await fetch('http://localhost:8080/nutritioknights/journal/'+target, {
+      const response = await fetch('http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/journal/'+target, {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',

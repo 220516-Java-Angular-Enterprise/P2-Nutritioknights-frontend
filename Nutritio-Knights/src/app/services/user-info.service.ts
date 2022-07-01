@@ -10,7 +10,7 @@ export class UserInfoService {
 
   constructor(private http: HttpClient) { }
 
-  private userURL = "http://localhost:8080/nutritioknights/userinfo";
+  private userURL = "http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/userinfo";
 
   getUserInfoByEmail(email: string): Promise<UserInfo> {
     let queryParams = new HttpParams();

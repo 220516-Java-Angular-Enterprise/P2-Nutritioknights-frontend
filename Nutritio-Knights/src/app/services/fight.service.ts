@@ -10,7 +10,7 @@ export class FightService {
 
   constructor(private http: HttpClient) { }
 
-  private fightURL = "http://localhost:8080/nutritioknights/fight";
+  private fightURL = "http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/fight";
 
   getCurrentFight(username: string): Promise<Fight> {
     let queryParams = new HttpParams();
