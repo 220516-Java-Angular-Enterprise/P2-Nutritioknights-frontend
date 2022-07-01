@@ -20,14 +20,14 @@
             <th colspan = "7"></th>
         </thead>
         <tbody>
-            <tr *ngFor="let foodItem of todayFoods; let i = index;" >
-                <td>{{foodItem.name}}</td>
-                <td>{{todayEntries[i].serving_amt}}</td>
-                <td>{{foodItem.servings[0].calories*todayEntries[i].serving_amt}}</td>
-                <td>{{foodItem.servings[0].protein*todayEntries[i].serving_amt}}</td>
-                <td>{{foodItem.servings[0].fat*todayEntries[i].serving_amt}}</td>
-                <td>{{foodItem.servings[0].carbohydrate*todayEntries[i].serving_amt}}</td>
-                <td><button class="button" (click)="deleteEntry(i)">Delete Entry</button></td>
+            <tr *ngFor="let foodItem of todayEntries;" >
+                <td>{{foodItem.food}}</td>
+                <td>{{foodItem.serving_amt}}</td>
+                <td>{{foodItem.calories}}</td>
+                <td>{{foodItem.protein}}</td>
+                <td>{{foodItem.fats}}</td>
+                <td>{{foodItem.carbs}}</td>
+                <td><button class="button" (click)="deleteEntry(foodItem.entry_id)">Delete Entry</button></td>
         </tbody>
     </table>
 </div>
@@ -53,14 +53,14 @@
             <th colspan = "7"></th>
         </thead>
         <tbody>
-            <tr *ngFor="let serving of selectedFood.servings; let i = index;" (click)="selectServing(serving.servingId)">
+            <tr *ngFor="let serving of selectedFood.servings;">
                 <td>{{serving.servingDescription}}</td>
                 <td>{{serving.calories}}</td>
                 <td>{{serving.carbohydrate}}</td>
                 <td>{{serving.fat}}</td>
                 <td>{{serving.protein}}</td>
                 <td></td>
-                <td><button class="button"(click)="addToJournal(numServings,selectedFood,i)">Add to journal</button></td>
+                <td><button class="button"(click)="addToJournal(numServings,selectedFood,serving.servingId)">Add to journal</button></td>
         </tbody>
     </table>
 </div>

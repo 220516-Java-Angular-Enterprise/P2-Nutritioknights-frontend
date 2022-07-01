@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom, retry } from 'rxjs';
 import { Food } from '../models/food';
 import { FoodEntry } from '../models/food-entry';
-
+import { FoodEntryPretty } from '../models/food-entry-pretty';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +32,14 @@ export class JournalService {
     return firstValueFrom(this.http.get<FoodEntry[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
     
   }
-
+  getUserEntriesByDatePretty(date:number,username:string): Promise<FoodEntryPretty[]>{
+    const url = 'http://localhost:8080/nutritioknights/journal/pretty';
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("d",date);
+    queryParams = queryParams.append("u",username);
+    return firstValueFrom(this.http.get<FoodEntryPretty[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
+    
+  }
   getUserEntriesByMealname(mealname:number, username:string):Promise<FoodEntry[]>{
     const url = 'http://localhost:8080/nutritioknights/journal/suggest';
     let queryParams = new HttpParams();
@@ -52,7 +59,7 @@ export class JournalService {
   // deleteEntry(target:string){
   //   const url = 'http://localhost:8080/nutritioknights/journal';
   // }
-  async deleteEntry(target:string):Promise<String>{
+  async deleteEntry(target:string|undefined):Promise<String>{
     try {
       const response = await fetch('http://localhost:8080/nutritioknights/journal/'+target, {
         method: 'DELETE',
