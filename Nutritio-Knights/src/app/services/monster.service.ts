@@ -10,7 +10,7 @@ export class MonsterService {
 
   constructor(private http: HttpClient) { }
 
-  private fightURL = "http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/monsters";
+  private fightURL = "http://localhost:8080/nutritioknights/monsters";
 
   getAllMonsters(): Promise<Monster[]> {
     return firstValueFrom(this.http.get<Monster[]>(this.fightURL));

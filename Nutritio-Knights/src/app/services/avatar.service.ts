@@ -10,7 +10,7 @@ export class AvatarService {
 
   constructor(private http: HttpClient) {}
 
-  private avatarURL = "http://testing-env-1.eba-ve96qwy6.us-east-1.elasticbeanstalk.com/nutritioknights/avatar";
+  private avatarURL = "http://localhost:8080/nutritioknights/avatar";
 
 
   createNewAvatar(username: string, gender: string) {

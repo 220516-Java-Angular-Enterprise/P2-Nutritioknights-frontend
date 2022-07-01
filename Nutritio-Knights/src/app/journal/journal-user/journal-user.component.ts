@@ -25,7 +25,7 @@ export class JournalUserComponent implements OnInit {
   query: string = '';
   selectedFood: Food= {} as Food;
   hasSelectedFood: boolean= true;
-  numServings: number =  0;
+  numServings: number =  1;
   selectedServingId: number = 0;
   searchResult:FoodSearchResult = {
     pageNumber: 0,
@@ -65,13 +65,6 @@ export class JournalUserComponent implements OnInit {
   getTodayEntries(u:string){
     this.journalService.getUserEntriesByDatePretty(this.journalService.getDateInt(),u).then( entries => {
       this.todayEntries = entries;
-    }).then(entries => {
-      for (var foodEntry of this.todayEntries){
-        this.foodService.getFoodWithServing(foodEntry.food_id,foodEntry.serving_id).then(food => {          
-          this.todayFoods.push(food);
-
-        })          
-      }
     }).catch(error => {
       this.hasEntriesToday = false;
       this.todayEntries = [];
@@ -106,6 +99,7 @@ export class JournalUserComponent implements OnInit {
     this.router.navigateByUrl('journal');
   }).catch(error =>{
     console.log(error.message);
+    this.router.navigateByUrl('journal');
   })
   }
 
@@ -130,6 +124,7 @@ export class JournalUserComponent implements OnInit {
       this.router.navigateByUrl('journal');
     }).catch(err =>{
       console.log(err.message);
+      this.router.navigateByUrl('journal');
     })
   }
   enterToSearch(event:any) {
