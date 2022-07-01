@@ -1,10 +1,17 @@
 
 <nav-bar></nav-bar>
+<body>
+
+
 <div class="container">
+ 
 <!-- <form class="mb-3">
     <form (ngSubmit)="processForm(newHealthForm)" #newHealthForm="ngForm"> -->
         <div class="mb-3">
-
+        <br>
+        <br>
+        <br>
+        <br>
     <label for="exampleFormControlInput1" class="form-label">Username</label>
     <input [(ngModel)]="questionair.username" name="username-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="username" required>
     <label for="exampleFormControlInput1" class="form-label">Firstname</label>
@@ -59,7 +66,7 @@
 
             <div *ngIf="!canCalTargetCalsError && targetCals !==0" style="color: green">
                 <br>
-                Target Calories is: 
+                Target Calorie per day is: 
             </div>
             <div *ngIf="!canCalTargetCalsError && targetCals !==0" style="color: green"> {{targetCals}} </div>
             
@@ -76,24 +83,9 @@
             <button class="btn btn-success"
                 (click)="processForm(questionair)">Finish Form</button>
 
-
-
-    <!-- <input type="submit" value="Submit" class="btn btn-success"> -->
-</div>
-</div>
-<!-- </form>
-</form> -->
-
-        <!-- <div *ngIf="canCalTargetCalsError" style="color: red">
-            <br>
-            There's something wrong with your form, Cannot calculate Calories
+           
         </div>
-        
-        <div *ngIf="!canCalTargetCalsError && targetCals !==0" style="color: green">
-            <br>
-            Target Calories is: {{targetCals}}
-        </div>
-        
-        <button class="button"
-            (click)="calculateTargetCals(questionair.age, questionair.sex, questionair.currentweight, questionair.height, questionair.howmuchlose)">Calculate
-            Calories</button> -->
+
+</div>
+</body>
+

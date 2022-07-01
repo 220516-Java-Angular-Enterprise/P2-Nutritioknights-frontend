@@ -22,7 +22,6 @@ export class QuestionnairComponent implements OnInit, OnChanges {
   currentSelectedSex:string = '';
   targetCals: number = 0;
   canCalTargetCalsError: boolean = false;
-
   getSelectedUserAccess() {
     console.log("Current Selected User", this.questionair.sex)
   }
@@ -176,7 +175,7 @@ export class QuestionnairComponent implements OnInit, OnChanges {
       //BMR intersex
     }
   }
-
+// pic1: string = "../assets/images/image.jpg";
 
 }
      
