@@ -1,11 +1,11 @@
 <!--every page has a navbar...-->>
 <nav-bar></nav-bar>
 
+
 <!--if no entries for today, display a message and the button-->
 <div *ngIf="hasEntriesToday===false" class="container">
     <h3>No entries yet today</h3>
 </div>
-
 <!--display today's entries if there are any-->
 <div *ngIf="hasEntriesToday===true" class="container">
     <h3>Today's journal:</h3>
@@ -17,10 +17,9 @@
             <th>proteins</th>
             <th>fats</th>
             <th>carbs</th>
-            <th colspan = "6"></th>
+            <th colspan = "7"></th>
         </thead>
         <tbody>
-
             <tr *ngFor="let foodItem of todayFoods; let i = index;" >
                 <td>{{foodItem.name}}</td>
                 <td>{{todayEntries[i].serving_amt}}</td>
@@ -28,6 +27,55 @@
                 <td>{{foodItem.servings[0].protein*todayEntries[i].serving_amt}}</td>
                 <td>{{foodItem.servings[0].fat*todayEntries[i].serving_amt}}</td>
                 <td>{{foodItem.servings[0].carbohydrate*todayEntries[i].serving_amt}}</td>
+                <td><button class="button" (click)="deleteEntry(i)">Delete Entry</button></td>
+        </tbody>
+    </table>
+</div>
+<input [(ngModel)]="query" name="query-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Search" required (keypress)="enterToSearch($event)">
+<button class="button" (click)="searchFood(query)">Search Foods...</button>
+<div *ngIf="hasSelectedFood===true" class="container">
+    <h3>Selected food: {{selectedFood.name}}</h3>
+    <table class="table table-hover">
+        <thead>
+            <th>Serving description</th>
+            <th>calories</th>
+            <th>carbohydrates (g)</th>
+            <th>fat(g)</th>
+            <th>protein(g)</th>
+            <th>add servings to journal:</th>
+            <th><select [(ngModel)]="numServings" name="numServings-name" #name="ngModel"  class="form-select" id="specificSizeSelect" required>
+                <option value=0>0</option>
+                <option value=0.5>0.5</option>
+                <option value=1>1.0</option>
+                <option value=1.5>1.5</option>
+                <option value=2>2</option>    
+            </select></th>
+            <th colspan = "7"></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let serving of selectedFood.servings; let i = index;" (click)="selectServing(serving.servingId)">
+                <td>{{serving.servingDescription}}</td>
+                <td>{{serving.calories}}</td>
+                <td>{{serving.carbohydrate}}</td>
+                <td>{{serving.fat}}</td>
+                <td>{{serving.protein}}</td>
+                <td></td>
+                <td><button class="button"(click)="addToJournal(numServings,selectedFood,i)">Add to journal</button></td>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="hasSearched===true" class="container">
+    <h3>Search results:</h3>
+    <table class="table table-hover">
+        <thead>
+            <th>Food name</th>
+            <th>description</th>
+            <th colspan = "2"></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let result of searchResult.results;" (click)="selectFood(result.id)">
+                <td>{{result.name}}</td>
+                <td>{{result.description}}</td>
         </tbody>
     </table>
 </div>

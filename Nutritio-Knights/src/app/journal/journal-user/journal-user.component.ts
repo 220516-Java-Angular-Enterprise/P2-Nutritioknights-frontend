@@ -6,7 +6,6 @@ import { FoodService } from 'src/app/services/food.service';
 import { JournalService } from 'src/app/services/journal.service';
 import { Serving } from 'src/app/models/serving';
 import { FoodSearchResult } from 'src/app/models/food-search-result';
-import { JournalEntry } from 'src/app/models/journal-entry';
 
 @Component({
   selector: 'app-journal-user',
@@ -15,45 +14,26 @@ import { JournalEntry } from 'src/app/models/journal-entry';
 })
 export class JournalUserComponent implements OnInit {
   
-
+  
   hasEntriesToday: boolean = false;
-  username: string = ''
+  username: string = '';
   activity: String[] = [];
   todayEntries: FoodEntry[] = [];
   todayFoods: Food[] =[];
+  hasSearched: boolean = false;
+  query: string = '';
+  selectedFood: Food= {} as Food;
+  hasSelectedFood: boolean= true;
+  numServings: number =  0;
+  selectedServingId: number = 0;
 
-  selectedServing:Serving = {
-    servingId: 0,
-    servingDescription: '',
-    servingUrl: '',
-    metricServingAmount: 0,
-    metricServingUnit: '',
-    numberOfUnits: 0,
-    measurementDescription: '',
-    calories: 0,
-    carbohydrate: 0,
-    protein: 0,
-    fat: 0,
-    saturatedFat: 0,
-    polyunsaturatedFat: 0,
-    monounsaturatedFat: 0,
-    transFat: undefined,
-    cholesterol: 0,
-    sodium: 0,
-    potassium: 0,
-    fiber: 0,
-    sugar: 0,
-    vitaminA: 0,
-    vitaminC: 0,
-    calcium: 0,
-    iron: 0
-  }
   searchResult:FoodSearchResult = {
     pageNumber: 0,
     maxResults: 50,
     totalResults: 0,
     results: []
   }
+
   constructor(private journalService:JournalService,  private foodService: FoodService, private currRouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -68,6 +48,14 @@ export class JournalUserComponent implements OnInit {
   }
   
 
+  refreshTodayEntries(){
+    this.currRouter.params.subscribe(p=> {
+      this.username = p['username'];
+      //get userentries for today
+      this.getTodayEntries(p['username'])
+    })
+
+  }
   getActivity(u:string){
     this.journalService.getActivity(u).then(a => {
       this.activity = a;
@@ -89,30 +77,58 @@ export class JournalUserComponent implements OnInit {
       this.todayFoods = [];
     }).then( done =>{
       this.hasEntriesToday = true;
-      console.log(this.todayEntries);
-      console.log(this.todayFoods);
     })
     
   }
   //populates selectedFood with values
-  selectFood(){}
-  
+  selectFood(id:string|number){
+    this.foodService.getFood(id).then(food => {
+      this.selectedFood=food;
+  }).catch(error =>{
+  })
+    console.log(this.selectedFood);
+    this.hasSelectedFood=true;
+  }
+
   //populates selectedServing with values
-  selectServing(){}
+  selectServing(id:number){
+    this.selectedServingId=id;
+  }
   
   //save an entry.  
-  saveEntry(){}
   
   //deletes an entry given an id. Means we must pull it from the database in order to be able to delete it.
-  deleteEntry(){}
+  deleteEntry(i:number){
+    this.journalService.deleteEntry(this.todayEntries[i].entry_id).then(response =>{
+  }).catch(error =>{
+    console.log(error.message);
+  })
+  }
 
   //search food database given a search term.
   searchFood(query:string){
     this.foodService.searchFood(query).then(r => {
       this.searchResult= r;        
-    }
-    )
+    }).then(searched => {this.hasSearched=true;})
   }
   //same as searchfood, but gets the selected  page if there is one.
-  searchFoodPage(){}
+  addToJournal(numServings:number,food:Food,servingId:number){
+    const foodEntry = {entry_id: "",
+      mealname_id: 1,
+      dateInt: 0,
+      food_id: food.id,
+      serving_id: servingId,
+      serving_amt: numServings,
+      username: this.username  } as FoodEntry
+    this.journalService.postEntry(foodEntry).then( resp => {
+      console.log(resp);
+    }).catch(err =>{
+      console.log(err.message);
+    })
+  }
+  enterToSearch(event:any) {
+    if (event.keyCode ==13){
+      this.searchFood(this.query);
+    }
+  }
 }
