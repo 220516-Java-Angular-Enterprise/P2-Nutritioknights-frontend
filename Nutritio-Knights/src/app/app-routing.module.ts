@@ -10,6 +10,7 @@ import { FightComponent } from './fight/fight.component';
 import { FightUserComponent } from './fight/fight-user/fight-user.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { UserAvatarComponent } from './avatar/user-avatar/user-avatar.component';
+import { JournalUserComponent } from './journal/journal-user/journal-user.component';
 
 
 const routes: Routes = [
@@ -63,7 +64,7 @@ const routes: Routes = [
 
   {
     path: "journal/:username",
-    component: JournalComponent,
+    component: JournalUserComponent,
     canActivate: [AuthGuard]
   },
 
