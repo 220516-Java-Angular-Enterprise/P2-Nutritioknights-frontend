@@ -53,14 +53,14 @@
             <th colspan = "7"></th>
         </thead>
         <tbody>
-            <tr *ngFor="let serving of selectedFood.servings; let i = index;" (click)="selectServing(serving.servingId)">
+            <tr *ngFor="let serving of selectedFood.servings;">
                 <td>{{serving.servingDescription}}</td>
                 <td>{{serving.calories}}</td>
                 <td>{{serving.carbohydrate}}</td>
                 <td>{{serving.fat}}</td>
                 <td>{{serving.protein}}</td>
                 <td></td>
-                <td><button class="button"(click)="addToJournal(numServings,selectedFood,i)">Add to journal</button></td>
+                <td><button class="button"(click)="addToJournal(numServings,selectedFood,serving.servingId)">Add to journal</button></td>
         </tbody>
     </table>
 </div>

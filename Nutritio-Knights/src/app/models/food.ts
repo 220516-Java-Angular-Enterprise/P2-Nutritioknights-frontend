@@ -7,5 +7,6 @@ export interface Food {
     description: any;
     brandName: string;
     servings: Serving[];
+    entryId?:string;
   };
   

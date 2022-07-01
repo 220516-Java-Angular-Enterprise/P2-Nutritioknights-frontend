@@ -26,7 +26,6 @@ export class JournalUserComponent implements OnInit {
   hasSelectedFood: boolean= true;
   numServings: number =  0;
   selectedServingId: number = 0;
-
   searchResult:FoodSearchResult = {
     pageNumber: 0,
     maxResults: 50,
@@ -68,7 +67,8 @@ export class JournalUserComponent implements OnInit {
     }).then(entries => {
       for (var foodEntry of this.todayEntries){
         this.foodService.getFoodWithServing(foodEntry.food_id,foodEntry.serving_id).then(food => {          
-          this.todayFoods.push(structuredClone(food));
+          this.todayFoods.push(food);
+
         })          
       }
     }).catch(error => {
@@ -77,6 +77,7 @@ export class JournalUserComponent implements OnInit {
       this.todayFoods = [];
     }).then( done =>{
       this.hasEntriesToday = true;
+      console.log(this.todayFoods);
     })
     
   }
@@ -98,8 +99,8 @@ export class JournalUserComponent implements OnInit {
   //save an entry.  
   
   //deletes an entry given an id. Means we must pull it from the database in order to be able to delete it.
-  deleteEntry(i:number){
-    this.journalService.deleteEntry(this.todayEntries[i].entry_id).then(response =>{
+  deleteEntry(id: number){
+    this.journalService.deleteEntry(this.todayEntries[id].entry_id).then(response =>{
   }).catch(error =>{
     console.log(error.message);
   })

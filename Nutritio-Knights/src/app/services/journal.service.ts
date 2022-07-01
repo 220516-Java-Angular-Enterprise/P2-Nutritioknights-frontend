@@ -52,7 +52,7 @@ export class JournalService {
   // deleteEntry(target:string){
   //   const url = 'http://localhost:8080/nutritioknights/journal';
   // }
-  async deleteEntry(target:string):Promise<String>{
+  async deleteEntry(target:string|undefined):Promise<String>{
     try {
       const response = await fetch('http://localhost:8080/nutritioknights/journal/'+target, {
         method: 'DELETE',
