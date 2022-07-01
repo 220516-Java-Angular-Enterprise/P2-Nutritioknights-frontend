@@ -19,6 +19,7 @@ import { FightUserComponent } from './fight/fight-user/fight-user.component';
 import { JournalUserComponent } from './journal/journal-user/journal-user.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { UserAvatarComponent } from './avatar/user-avatar/user-avatar.component';
+import { FooterComponent } from './common/footer/footer.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UserAvatarComponent } from './avatar/user-avatar/user-avatar.component'
     FightUserComponent,
     JournalUserComponent,
     AvatarComponent,
-    UserAvatarComponent
+    UserAvatarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
