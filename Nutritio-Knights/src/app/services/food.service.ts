@@ -16,6 +16,13 @@ export class FoodService {
     queryParams = queryParams.append("id",id);
     return firstValueFrom(this.http.get<Food>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
   }
+  getFoodWithServing(id:number|string,s:number|string): Promise<Food> {
+    const url = 'http://localhost:8080/nutritioknights/foods';
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("id",id);
+    queryParams = queryParams.append("s",s)
+    return firstValueFrom(this.http.get<Food>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
+  }
 
   searchFood(query:string): Promise<FoodSearchResult>{
   const url = 'http://localhost:8080/nutritioknights/foods/search';

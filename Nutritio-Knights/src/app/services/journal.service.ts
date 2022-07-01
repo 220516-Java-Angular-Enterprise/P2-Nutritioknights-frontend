@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom, retry } from 'rxjs';
 import { Food } from '../models/food';
 import { FoodEntry } from '../models/food-entry';
-
+import { FoodEntryPretty } from '../models/food-entry-pretty';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +32,14 @@ export class JournalService {
     return firstValueFrom(this.http.get<FoodEntry[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
     
   }
-
+  getUserEntriesByDatePretty(date:number,username:string): Promise<FoodEntryPretty[]>{
+    const url = 'http://localhost:8080/nutritioknights/journal/pretty';
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("d",date);
+    queryParams = queryParams.append("u",username);
+    return firstValueFrom(this.http.get<FoodEntryPretty[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5)));
+    
+  }
   getUserEntriesByMealname(mealname:number, username:string):Promise<FoodEntry[]>{
     const url = 'http://localhost:8080/nutritioknights/journal/suggest';
     let queryParams = new HttpParams();
@@ -41,16 +48,41 @@ export class JournalService {
     return firstValueFrom(this.http.get<FoodEntry[]>(url,{params:queryParams, responseType: 'json'}).pipe(retry(5))); 
   }
   postEntry(request:FoodEntry):Promise<String>{
-    const url = 'http://localhost:8080/nutritioknights/journal';
-    return firstValueFrom(this.http.post<String>(url,request,{ responseType: 'json' }).pipe(retry(5))); 
+    const url = 'http://localhost:8080/nutritioknights/journal/';
+    console.log(request);
+    return firstValueFrom(this.http.post<String>(url,request,{ responseType: 'json' })); 
   }
   getDateInt():number{
     return Math.floor(Date.now()/(1000*60*60*24));
   }
-/*
-  deleteEntry(target:string):{
-
+  
+  // deleteEntry(target:string){
+  //   const url = 'http://localhost:8080/nutritioknights/journal';
+  // }
+  async deleteEntry(target:string|undefined):Promise<String>{
+    try {
+      const response = await fetch('http://localhost:8080/nutritioknights/journal/'+target, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+  
+      console.log('Entry deleted successfully');
+  
+      return 'Entry deleted successfully';
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log('error message: ', error.message);
+        return error.message;
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
   }
-*/
-
 }
