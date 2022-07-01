@@ -48,6 +48,14 @@ export class JournalUserComponent implements OnInit {
   }
   
 
+  refreshTodayEntries(){
+    this.currRouter.params.subscribe(p=> {
+      this.username = p['username'];
+      //get userentries for today
+      this.getTodayEntries(p['username'])
+    })
+
+  }
   getActivity(u:string){
     this.journalService.getActivity(u).then(a => {
       this.activity = a;
@@ -88,10 +96,14 @@ export class JournalUserComponent implements OnInit {
   }
   
   //save an entry.  
-  saveEntry(){}
   
   //deletes an entry given an id. Means we must pull it from the database in order to be able to delete it.
-  deleteEntry(){}
+  deleteEntry(i:number){
+    this.journalService.deleteEntry(this.todayEntries[i].entry_id).then(response =>{
+  }).catch(error =>{
+    console.log(error.message);
+  })
+  }
 
   //search food database given a search term.
   searchFood(query:string){
@@ -100,8 +112,23 @@ export class JournalUserComponent implements OnInit {
     }).then(searched => {this.hasSearched=true;})
   }
   //same as searchfood, but gets the selected  page if there is one.
-  searchFoodPage(){}
-  addToJournal(numServings:number){
-    console.log(this.numServings);
+  addToJournal(numServings:number,food:Food,servingId:number){
+    const foodEntry = {entry_id: "",
+      mealname_id: 1,
+      dateInt: 0,
+      food_id: food.id,
+      serving_id: servingId,
+      serving_amt: numServings,
+      username: this.username  } as FoodEntry
+    this.journalService.postEntry(foodEntry).then( resp => {
+      console.log(resp);
+    }).catch(err =>{
+      console.log(err.message);
+    })
+  }
+  enterToSearch(event:any) {
+    if (event.keyCode ==13){
+      this.searchFood(this.query);
+    }
   }
 }

@@ -17,7 +17,7 @@
             <th>proteins</th>
             <th>fats</th>
             <th>carbs</th>
-            <th colspan = "6"></th>
+            <th colspan = "7"></th>
         </thead>
         <tbody>
             <tr *ngFor="let foodItem of todayFoods; let i = index;" >
@@ -27,10 +27,11 @@
                 <td>{{foodItem.servings[0].protein*todayEntries[i].serving_amt}}</td>
                 <td>{{foodItem.servings[0].fat*todayEntries[i].serving_amt}}</td>
                 <td>{{foodItem.servings[0].carbohydrate*todayEntries[i].serving_amt}}</td>
+                <td><button class="button" (click)="deleteEntry(i)">Delete Entry</button></td>
         </tbody>
     </table>
 </div>
-<input [(ngModel)]="query" name="query-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Search" required>
+<input [(ngModel)]="query" name="query-name" #name="ngModel" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Search" required (keypress)="enterToSearch($event)">
 <button class="button" (click)="searchFood(query)">Search Foods...</button>
 <div *ngIf="hasSelectedFood===true" class="container">
     <h3>Selected food: {{selectedFood.name}}</h3>
@@ -52,14 +53,14 @@
             <th colspan = "7"></th>
         </thead>
         <tbody>
-            <tr *ngFor="let serving of selectedFood.servings;" (click)="selectServing(serving.servingId)">
+            <tr *ngFor="let serving of selectedFood.servings; let i = index;" (click)="selectServing(serving.servingId)">
                 <td>{{serving.servingDescription}}</td>
                 <td>{{serving.calories}}</td>
                 <td>{{serving.carbohydrate}}</td>
                 <td>{{serving.fat}}</td>
                 <td>{{serving.protein}}</td>
                 <td></td>
-                <td><button class="button"(click)="addToJournal(numServings)">Add to journal</button></td>
+                <td><button class="button"(click)="addToJournal(numServings,selectedFood,i)">Add to journal</button></td>
         </tbody>
     </table>
 </div>
