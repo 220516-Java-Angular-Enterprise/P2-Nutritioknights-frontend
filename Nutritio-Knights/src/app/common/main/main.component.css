@@ -93,6 +93,11 @@ h3{
     font-size: 18px;
 }
 
+h2{
+    font-size: 40px;
+    font-size: 600;
+}
+
 
 .feature-col img{
     width: 220px;
@@ -133,4 +138,74 @@ h3{
 .name {
     text-align: center;
 }
+
+.wrapper{
+    margin-top: 2%;
+}
+
+.wrapper h2{
+    margin-bottom: 2%;
+    text-align: center;
+
+}
+.team{
+    display: flex;
+    text-align: center;
+    width: auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.team .team_member{
+    background-color: aliceblue;
+    margin: 5px;
+    margin-bottom: 50px;
+    width: 300px;
+    padding: 20px;
+    line-height: 20px;
+    color: #8e8b8b;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+.team .team_member p.role{
+    color: #ccc;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 12px 0;
+}
+
+.team-title{
+    margin-bottom: 6%;
+margin-top: 20px;
+    text-align: center;
+}
+
+.team_member h4{
+    margin-top: 20px;
+}
+
+.team .team_member .team_img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    transform: translateX(50%);
+    background: #fff;
+}
+
+.team .team_member img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border-bottom: 20px;
+
+}
+
+
 
