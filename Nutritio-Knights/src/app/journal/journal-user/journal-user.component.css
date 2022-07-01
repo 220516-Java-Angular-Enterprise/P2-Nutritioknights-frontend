@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lora', serif;;
+    box-sizing: border-box;
+}
+
+button{
+    color: black;
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+}
+
+.title h3{
+    padding-bottom: 2%;
+}
+
+button:hover{
+    background-color: aliceblue;
+}
+
+.content-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 900px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr{
+    background-color: #009879;
+    color: black;
+    font-weight: bold;
+}
+
+.content-table th, 
+.content-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr:hover{
+    font-weight: bold;
+    color: black;
+}
+
+.dashboard .dash-content{
+    padding-top: 50px;
+}
+
+.monster-details{
+    padding-top: 2%;
+}
+
+.cancel{
+    padding-left: 2%;
+}
+
